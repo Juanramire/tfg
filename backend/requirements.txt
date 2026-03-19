@@ -3,3 +3,5 @@ uvicorn
 python-dotenv
 pymongo[srv]
 pydantic
+pytest
+httpx
