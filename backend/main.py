@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes.features import router as features_router
+from routes.productos import router as productos_router
 
 app = FastAPI(title="PC Configurador API", version="0.1.0")
 
@@ -13,6 +14,7 @@ app.add_middleware(
 )
 
 app.include_router(features_router)
+app.include_router(productos_router)
 
 
 @app.get("/")
