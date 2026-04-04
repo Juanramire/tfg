@@ -1,0 +1,116 @@
+namespace PC_Configurador
+
+features
+    PC_Custom
+        mandatory
+            Procesador
+                alternative
+                    Intel
+                        alternative
+                            Intel_Gama_Baja
+                            Intel_Gama_Media
+                            Intel_Gama_Alta
+                    AMD
+                        alternative
+                            AMD_Gama_Baja
+                            AMD_Gama_Media
+                            AMD_Gama_Alta
+            PlacaBase
+                mandatory
+                    Socket
+                        alternative
+                            LGA1700
+                            LGA1851
+                            AM4
+                            AM5
+                    FormatoPlaca
+                        alternative
+                            Placa_ATX
+                            Placa_MicroATX
+                            Placa_MiniITX
+            MemoriaRAM
+                mandatory
+                    GeneracionRAM
+                        alternative
+                            DDR4
+                            DDR5
+                    CapacidadRAM
+                        alternative
+                            RAM_8GB
+                            RAM_16GB
+                            RAM_32GB
+                            RAM_64GB
+            Refrigeracion
+                alternative
+                    Refrigeracion_Aire
+                    Refrigeracion_Liquida
+            Chasis
+                alternative
+                    Caja_ATX
+                    Caja_MicroATX
+                    Caja_MiniITX
+            FuenteAlimentacion
+                alternative
+                    PSU_500W
+                    PSU_650W
+                    PSU_750W
+                    PSU_850W
+            Almacenamiento
+                or
+                    SSD_NVMe
+                    SSD_SATA
+                    Disco_HDD
+        optional
+            TarjetaGrafica
+                alternative
+                    GPU_Gama_Baja
+                    GPU_Gama_Media
+                    GPU_Gama_Alta
+            PerfilUso
+                alternative
+                    Gaming
+                    Ofimatica
+                    Edicion
+                    Programacion
+
+constraints
+    // Procesador <=> Socket (bidireccional para propagacion completa en FlamaPy)
+    Intel => (LGA1700 | LGA1851)
+    AMD => (AM4 | AM5)
+    LGA1700 => Intel
+    LGA1851 => Intel
+    AM4 => AMD
+    AM5 => AMD
+
+    // Socket => tipo de RAM soportada
+    AM4 => DDR4
+    AM5 => DDR5
+    LGA1851 => DDR5
+    // LGA1700 soporta DDR4 y DDR5 (sin restriccion adicional)
+
+    // Formato de placa base => chasis compatible
+    Placa_ATX => Caja_ATX
+    Placa_MicroATX => (Caja_ATX | Caja_MicroATX)
+    // Placa_MiniITX cabe en cualquier chasis (no necesita constraint)
+
+    // GPU => requisitos minimos de PSU por consumo energetico
+    GPU_Gama_Alta => (PSU_750W | PSU_850W)
+    GPU_Gama_Media => (PSU_650W | PSU_750W | PSU_850W)
+
+    // Procesadores de gama alta => refrigeracion liquida por TDP elevado
+    Intel_Gama_Alta => Refrigeracion_Liquida
+    AMD_Gama_Alta => Refrigeracion_Liquida
+
+    // Refrigeracion liquida requiere chasis con espacio para radiador
+    Refrigeracion_Liquida => (Caja_ATX | Caja_MicroATX)
+
+    // Caja MiniITX no admite GPU de gama alta por limitacion de espacio
+    Caja_MiniITX => !GPU_Gama_Alta
+
+    // Perfil de uso => requisitos minimos de componentes
+    Gaming => TarjetaGrafica
+    Gaming => (GPU_Gama_Media | GPU_Gama_Alta)
+    Gaming => (RAM_16GB | RAM_32GB | RAM_64GB)
+    Edicion => TarjetaGrafica
+    Edicion => (RAM_32GB | RAM_64GB)
+    Programacion => (RAM_16GB | RAM_32GB | RAM_64GB)

@@ -5,3 +5,6 @@ pymongo[srv]
 pydantic
 pytest
 httpx
+flamapy
+flamapy-fm
+flamapy-sat
