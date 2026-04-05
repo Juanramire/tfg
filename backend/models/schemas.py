@@ -21,3 +21,14 @@ class ModelInfoResponse(BaseModel):
     num_configurations: int
     core_features: list[str]
     dead_features: list[str]
+
+
+class PresupuestoRequest(BaseModel):
+    presupuesto: float
+    selected: list[str] = []
+    deselected: list[str] = []
+
+
+class PerfilRequest(BaseModel):
+    perfil: str
+    presupuesto: float | None = None
