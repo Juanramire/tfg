@@ -21,7 +21,14 @@ def _get_mongo_collection():
     try:
         from pymongo import MongoClient
 
-        client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
+        client = MongoClient(
+            mongo_uri,
+            serverSelectionTimeoutMS=8000,
+            connectTimeoutMS=8000,
+            socketTimeoutMS=8000,
+            tls=True,
+            tlsAllowInvalidCertificates=True,
+        )
         client.server_info()
         db = client["pc_configurador"]
         return db["productos"]
