@@ -11,8 +11,11 @@ import {
   Alert,
 } from "@mui/material";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import DownloadIcon from "@mui/icons-material/Download";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import useConfigStore from "../store/useConfigStore";
 import PriceLinks from "./PriceLinks";
+import { exportJSON, exportPDF } from "../utils/exportConfig";
 
 export default function StepResumen() {
   const navigate = useNavigate();
@@ -113,7 +116,21 @@ export default function StepResumen() {
         </Alert>
       )}
 
-      <Stack direction="row" spacing={2} justifyContent="center" mt={3}>
+      <Stack direction="row" spacing={2} justifyContent="center" flexWrap="wrap" useFlexGap mt={3}>
+        <Button
+          variant="contained"
+          startIcon={<PictureAsPdfIcon />}
+          onClick={() => exportPDF(componentesElegidos, presupuesto, perfil)}
+        >
+          Exportar PDF
+        </Button>
+        <Button
+          variant="outlined"
+          startIcon={<DownloadIcon />}
+          onClick={() => exportJSON(componentesElegidos, presupuesto, perfil)}
+        >
+          Exportar JSON
+        </Button>
         <Button
           variant="outlined"
           startIcon={<RestartAltIcon />}
