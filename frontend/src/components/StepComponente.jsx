@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import useConfigStore from "../store/useConfigStore";
+import PriceLinks from "./PriceLinks";
 
 const LABELS = {
   Procesador: "Elige un procesador",
@@ -168,9 +169,12 @@ export default function StepComponente({ categoria }) {
                         ))}
                       </Stack>
                     </Box>
-                    <Typography variant="h6" color="primary" sx={{ ml: 2, whiteSpace: "nowrap" }}>
-                      {p.precio.toFixed(2)}€
-                    </Typography>
+                    <Stack alignItems="flex-end" spacing={0.5} sx={{ ml: 2 }}>
+                      <Typography variant="h6" color="primary" sx={{ whiteSpace: "nowrap" }}>
+                        {p.precio.toFixed(2)}€
+                      </Typography>
+                      <PriceLinks nombre={p.nombre} />
+                    </Stack>
                   </Stack>
                 </CardContent>
               </CardActionArea>

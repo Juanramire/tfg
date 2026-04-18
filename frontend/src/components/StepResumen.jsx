@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import useConfigStore from "../store/useConfigStore";
+import PriceLinks from "./PriceLinks";
 
 export default function StepResumen() {
   const navigate = useNavigate();
@@ -66,9 +67,12 @@ export default function StepResumen() {
                     {producto.nombre}
                   </Typography>
                 </Box>
-                <Typography variant="subtitle1" color="primary" fontWeight="bold">
-                  {producto.precio.toFixed(2)}€
-                </Typography>
+                <Stack alignItems="flex-end" spacing={0.5}>
+                  <Typography variant="subtitle1" color="primary" fontWeight="bold">
+                    {producto.precio.toFixed(2)}€
+                  </Typography>
+                  <PriceLinks nombre={producto.nombre} />
+                </Stack>
               </Stack>
             </CardContent>
           </Card>
