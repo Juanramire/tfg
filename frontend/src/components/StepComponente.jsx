@@ -11,8 +11,11 @@ import {
   CircularProgress,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import useConfigStore from "../store/useConfigStore";
 import PriceLinks from "./PriceLinks";
+import { getMessages } from "../utils/educationalMessages";
 
 const LABELS = {
   Procesador: "Elige un procesador",
@@ -78,26 +81,24 @@ export default function StepComponente({ categoria }) {
     productosPorCategoria,
     componentesElegidos,
     excluded,
+    selected,
     loading,
     loadProductos,
     elegirProducto,
-    selectFeature,
   } = useConfigStore();
 
   const productos = productosPorCategoria[categoria] || [];
   const elegido = componentesElegidos[categoria];
   const isGPU = categoria === "TarjetaGrafica";
   const gpuExcluida = excluded.includes("TarjetaGrafica");
+  const educationalMsgs = getMessages(categoria, excluded, selected);
 
   useEffect(() => {
     loadProductos(categoria);
   }, [categoria, excluded.length, loadProductos]);
 
-  const handleSelect = async (producto) => {
+  const handleSelect = (producto) => {
     elegirProducto(categoria, producto);
-    for (const f of producto.features) {
-      await selectFeature(f);
-    }
   };
 
   if (isGPU && gpuExcluida) {
@@ -119,6 +120,17 @@ export default function StepComponente({ categoria }) {
       <Typography variant="h6" gutterBottom>
         {LABELS[categoria] || categoria}
       </Typography>
+
+      {educationalMsgs.map((msg) => (
+        <Alert
+          key={msg}
+          severity="info"
+          icon={<InfoOutlinedIcon fontSize="small" />}
+          sx={{ mb: 1.5 }}
+        >
+          {msg}
+        </Alert>
+      ))}
 
       {loading && productos.length === 0 && (
         <Box textAlign="center" py={4}>
@@ -152,7 +164,12 @@ export default function StepComponente({ categoria }) {
                         <Typography variant="subtitle1" fontWeight="bold">
                           {p.nombre}
                         </Typography>
-                        {isSelected && <CheckCircleIcon color="primary" fontSize="small" />}
+                        {isSelected && (
+                          <CheckCircleIcon color="primary" fontSize="small" titleAccess="Seleccionado — haz clic para deseleccionar" />
+                        )}
+                        {isSelected && (
+                          <HighlightOffIcon fontSize="small" sx={{ color: "text.disabled", opacity: 0.5 }} titleAccess="Haz clic para deseleccionar" />
+                        )}
                       </Stack>
                       <Typography variant="body2" color="text.secondary">
                         {formatSpecs(p.specs)}

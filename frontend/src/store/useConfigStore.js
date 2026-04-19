@@ -128,23 +128,34 @@ const useConfigStore = create((set, get) => ({
     }
   },
 
-  // Choose a specific product for a category
+  // Choose a specific product for a category (click again to deselect)
   elegirProducto: async (categoria, producto) => {
     const state = get();
+    const yaElegido = state.componentesElegidos[categoria]?.nombre === producto.nombre;
 
-    // Collect features from all OTHER selected products (not this category)
+    // Build features from all OTHER categories
     const otherFeatures = Object.entries(state.componentesElegidos)
       .filter(([cat]) => cat !== categoria)
       .flatMap(([, p]) => p.features);
 
-    // New selected = other products' features + new product's features
-    const newSelected = [...new Set([...otherFeatures, ...producto.features])];
+    const profileFeatures = state.perfil ? [state.perfil] : [];
 
-    set((s) => ({
-      componentesElegidos: { ...s.componentesElegidos, [categoria]: producto },
-      selected: newSelected,
-      loading: true,
-    }));
+    let newComponentes;
+    let newSelected;
+
+    if (yaElegido) {
+      // Deselect: remove this category from chosen components
+      newComponentes = Object.fromEntries(
+        Object.entries(state.componentesElegidos).filter(([cat]) => cat !== categoria)
+      );
+      newSelected = [...new Set([...otherFeatures, ...profileFeatures])];
+    } else {
+      // Select new product
+      newComponentes = { ...state.componentesElegidos, [categoria]: producto };
+      newSelected = [...new Set([...otherFeatures, ...producto.features, ...profileFeatures])];
+    }
+
+    set({ componentesElegidos: newComponentes, selected: newSelected, loading: true });
 
     try {
       const result = await propagate(newSelected, state.deselected);
