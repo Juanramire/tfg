@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -8,6 +9,30 @@ from fastapi.testclient import TestClient
 from main import app
 
 client = TestClient(app)
+
+MOCK_GAMING = {
+    "perfil": "Gaming",
+    "presupuesto": 1200.0,
+    "selected": ["Gaming", "GPU_Gama_Media"],
+    "deselected": [],
+    "explicacion": "Configuración gaming de gama media para 1080p.",
+}
+
+MOCK_EDICION = {
+    "perfil": "Edicion",
+    "presupuesto": 1500.0,
+    "selected": ["Edicion", "RAM_32GB"],
+    "deselected": [],
+    "explicacion": "Configuración para edición de vídeo en 4K.",
+}
+
+MOCK_OFIMATICA = {
+    "perfil": "Ofimatica",
+    "presupuesto": 600.0,
+    "selected": ["Ofimatica"],
+    "deselected": ["TarjetaGrafica"],
+    "explicacion": "Configuración básica para ofimática.",
+}
 
 
 class TestPresupuesto:
@@ -111,6 +136,90 @@ class TestPerfil:
         assert "Ofimatica" in data
         assert "Edicion" in data
         assert "Programacion" in data
+
+
+class TestConsultaIA:
+    def test_consulta_gaming(self):
+        with patch(
+            "services.gemini_service.interpretar_consulta", return_value=MOCK_GAMING
+        ):
+            r = client.post(
+                "/api/configuracion/consulta",
+                json={"consulta": "Quiero jugar a 1080p gama media"},
+            )
+        assert r.status_code == 200
+        data = r.json()
+        assert data["perfil"] == "Gaming"
+        assert data["precio_total"] > 0
+        categorias = [c["categoria"] for c in data["componentes"]]
+        assert "TarjetaGrafica" in categorias
+
+    def test_consulta_edicion(self):
+        with patch(
+            "services.gemini_service.interpretar_consulta", return_value=MOCK_EDICION
+        ):
+            r = client.post(
+                "/api/configuracion/consulta", json={"consulta": "Editar vídeo en 4K"}
+            )
+        assert r.status_code == 200
+        data = r.json()
+        assert data["perfil"] == "Edicion"
+        for c in data["componentes"]:
+            if c["categoria"] == "MemoriaRAM":
+                assert (
+                    "RAM_32GB" in c["producto"]["features"]
+                    or "RAM_64GB" in c["producto"]["features"]
+                )
+
+    def test_consulta_ofimatica_sin_gpu(self):
+        with patch(
+            "services.gemini_service.interpretar_consulta", return_value=MOCK_OFIMATICA
+        ):
+            r = client.post(
+                "/api/configuracion/consulta",
+                json={"consulta": "PC básico para trabajar"},
+            )
+        assert r.status_code == 200
+        categorias = [c["categoria"] for c in r.json()["componentes"]]
+        assert "TarjetaGrafica" not in categorias
+
+    def test_consulta_vacia(self):
+        r = client.post("/api/configuracion/consulta", json={"consulta": "   "})
+        assert r.status_code == 400
+
+    def test_consulta_gemini_no_disponible(self):
+        with patch(
+            "services.gemini_service.interpretar_consulta",
+            side_effect=RuntimeError("API no disponible"),
+        ):
+            r = client.post(
+                "/api/configuracion/consulta", json={"consulta": "Quiero un PC"}
+            )
+        assert r.status_code == 503
+
+    def test_consulta_incluye_explicacion(self):
+        with patch(
+            "services.gemini_service.interpretar_consulta", return_value=MOCK_GAMING
+        ):
+            r = client.post(
+                "/api/configuracion/consulta", json={"consulta": "Gaming 1080p"}
+            )
+        data = r.json()
+        assert "explicacion" in data
+        assert len(data["explicacion"]) > 0
+
+    def test_consulta_config_valida_flamapy(self):
+        with patch(
+            "services.gemini_service.interpretar_consulta", return_value=MOCK_GAMING
+        ):
+            r = client.post(
+                "/api/configuracion/consulta", json={"consulta": "Gaming 1080p"}
+            )
+        all_features = []
+        for c in r.json()["componentes"]:
+            all_features.extend(c["producto"]["features"])
+        r2 = client.post("/api/features/validate", json={"selected": all_features})
+        assert r2.json()["valid"] is True
 
 
 class TestCoherencia:

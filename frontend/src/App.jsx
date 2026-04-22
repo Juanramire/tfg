@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Landing from "./pages/Landing";
 import Configurador from "./pages/Configurador";
+import ConsultaIA from "./pages/ConsultaIA";
 
 const theme = createTheme({
   palette: {
@@ -22,6 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/consulta" element={<ConsultaIA />} />
           <Route path="/configurar" element={<Configurador />} />
         </Routes>
       </BrowserRouter>

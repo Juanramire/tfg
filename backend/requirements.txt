@@ -8,3 +8,4 @@ httpx
 flamapy
 flamapy-fm
 flamapy-sat
+google-genai

@@ -47,3 +47,8 @@ export const generarPorPerfil = (perfil, presupuesto = null) =>
     body: JSON.stringify({ perfil, presupuesto }),
   });
 export const getPerfiles = () => fetchAPI("/configuracion/perfiles");
+export const consultaIA = (consulta) =>
+  fetchAPI("/configuracion/consulta", {
+    method: "POST",
+    body: JSON.stringify({ consulta }),
+  });

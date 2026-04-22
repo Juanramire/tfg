@@ -12,8 +12,14 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import SavingsIcon from "@mui/icons-material/Savings";
 import TuneIcon from "@mui/icons-material/Tune";
 import SchoolIcon from "@mui/icons-material/School";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 const features = [
+  {
+    icon: <AutoAwesomeIcon fontSize="large" />,
+    title: "Configuración por IA",
+    desc: "Describe con tus propias palabras qué quieres hacer con el PC y la IA generará la configuración óptima.",
+  },
   {
     icon: <TuneIcon fontSize="large" />,
     title: "Configurador inteligente",
@@ -48,14 +54,26 @@ export default function Landing() {
         <Typography variant="h6" color="text.secondary" mb={4}>
           Configura tu PC ideal con validación automática de compatibilidad
         </Typography>
-        <Button
-          variant="contained"
-          size="large"
-          onClick={() => navigate("/configurar")}
-          sx={{ px: 5, py: 1.5, fontSize: "1.1rem" }}
-        >
-          Empezar a configurar
-        </Button>
+        <Stack direction="row" spacing={2} justifyContent="center" flexWrap="wrap" useFlexGap>
+          <Button
+            variant="contained"
+            size="large"
+            startIcon={<AutoAwesomeIcon />}
+            onClick={() => navigate("/consulta")}
+            sx={{ px: 4, py: 1.5, fontSize: "1.1rem" }}
+          >
+            Configurar con IA
+          </Button>
+          <Button
+            variant="outlined"
+            size="large"
+            startIcon={<TuneIcon />}
+            onClick={() => navigate("/configurar")}
+            sx={{ px: 4, py: 1.5, fontSize: "1.1rem" }}
+          >
+            Configurar manualmente
+          </Button>
+        </Stack>
       </Box>
 
       <Stack spacing={3}>

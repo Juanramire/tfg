@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { propagate, getProductos, generarPorPerfil } from "../services/api";
+import { propagate, getProductos, generarPorPerfil, consultaIA } from "../services/api";
 
 const useConfigStore = create((set, get) => ({
   // State
@@ -204,6 +204,41 @@ const useConfigStore = create((set, get) => ({
       return resultado;
     } catch (err) {
       set({ error: err.message, loading: false });
+    }
+  },
+
+  // Generate config from natural language query via Gemini
+  consultarIA: async (consulta) => {
+    set({ loading: true, error: null });
+    try {
+      const resultado = await consultaIA(consulta);
+
+      const elegidos = {};
+      const allFeatures = [];
+      for (const comp of resultado.componentes) {
+        elegidos[comp.categoria] = comp.producto;
+        allFeatures.push(...comp.producto.features);
+      }
+
+      const result = await propagate(allFeatures, []);
+
+      set({
+        componentesElegidos: elegidos,
+        selected: allFeatures,
+        perfil: resultado.perfil || null,
+        presupuesto: resultado.presupuesto,
+        forced: result.forced,
+        excluded: result.excluded,
+        selectable: result.selectable,
+        avisos: resultado.avisos,
+        activeStep: get().steps.length - 1,
+        loading: false,
+      });
+
+      return resultado;
+    } catch (err) {
+      set({ error: err.message, loading: false });
+      throw err;
     }
   },
 

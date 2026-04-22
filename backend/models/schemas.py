@@ -32,3 +32,7 @@ class PresupuestoRequest(BaseModel):
 class PerfilRequest(BaseModel):
     perfil: str
     presupuesto: float | None = None
+
+
+class ConsultaRequest(BaseModel):
+    consulta: str

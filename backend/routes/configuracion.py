@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from models.schemas import PresupuestoRequest, PerfilRequest
+from models.schemas import PresupuestoRequest, PerfilRequest, ConsultaRequest
 from services.configurador_service import generar_por_presupuesto, generar_por_perfil
 
 router = APIRouter(prefix="/api/configuracion", tags=["configuracion"])
@@ -38,6 +38,51 @@ def configurar_por_perfil(request: PerfilRequest):
     )
     if "error" in resultado:
         raise HTTPException(status_code=400, detail=resultado["error"])
+    return resultado
+
+
+@router.post("/consulta")
+def configurar_por_consulta(request: ConsultaRequest):
+    """Interpret a natural language query and generate a PC configuration."""
+    if not request.consulta.strip():
+        raise HTTPException(status_code=400, detail="La consulta no puede estar vacía")
+
+    try:
+        from services.gemini_service import interpretar_consulta
+
+        interpretacion = interpretar_consulta(request.consulta)
+    except RuntimeError as e:
+        raise HTTPException(status_code=503, detail=str(e))
+
+    from services.configurador_service import PERFILES
+
+    presupuestos_defecto = {
+        "Gaming": 1200.0,
+        "Edicion": 1500.0,
+        "Programacion": 1000.0,
+        "Ofimatica": 600.0,
+    }
+    perfil = interpretacion.get("perfil")
+    selected = interpretacion.get("selected", [])
+    deselected = interpretacion.get("deselected", [])
+    presupuesto = interpretacion.get("presupuesto") or presupuestos_defecto.get(
+        perfil, 1000.0
+    )
+
+    # If profile detected, merge its features
+    if perfil and perfil in PERFILES:
+        selected = list(set(selected + PERFILES[perfil]["selected"]))
+        deselected = list(set(deselected + PERFILES[perfil]["deselected"]))
+
+    resultado = generar_por_presupuesto(
+        presupuesto=presupuesto,
+        selected=selected,
+        deselected=deselected,
+    )
+    resultado["perfil"] = perfil
+    resultado["explicacion"] = interpretacion.get("explicacion", "")
+    resultado["interpretacion"] = interpretacion
+
     return resultado
 
 
