@@ -14,9 +14,9 @@ export function exportJSON(componentesElegidos, presupuesto, perfil) {
   const data = {
     fecha: new Date().toLocaleDateString("es-ES"),
     perfil: perfil || null,
-    presupuesto,
+    presupuesto: presupuesto ?? null,
     precio_total: Math.round(precioTotal * 100) / 100,
-    ahorro: Math.max(0, Math.round((presupuesto - precioTotal) * 100) / 100),
+    ahorro: presupuesto !== null ? Math.max(0, Math.round((presupuesto - precioTotal) * 100) / 100) : null,
     componentes,
   };
 
@@ -65,7 +65,7 @@ export function exportPDF(componentesElegidos, presupuesto, perfil) {
 
   // Info general
   if (perfil) addLine(`Perfil: ${perfil}`, 11, true, [90, 170, 249]);
-  addLine(`Presupuesto: ${presupuesto.toFixed(2)} €`, 10);
+  if (presupuesto !== null) addLine(`Presupuesto: ${presupuesto.toFixed(2)} €`, 10);
   y += 4;
   addDivider();
 
@@ -105,18 +105,21 @@ export function exportPDF(componentesElegidos, presupuesto, perfil) {
   addDivider();
 
   // Totales
-  const dentroPresupuesto = precioTotal <= presupuesto;
+  const dentroPresupuesto = presupuesto !== null && precioTotal <= presupuesto;
   addLine("TOTAL", 12, true);
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
-  doc.setTextColor(...(dentroPresupuesto ? [76, 175, 80] : [244, 67, 54]));
+  const colorTotal = presupuesto === null ? [230, 230, 230] : dentroPresupuesto ? [76, 175, 80] : [244, 67, 54];
+  doc.setTextColor(...colorTotal);
   doc.text(`${precioTotal.toFixed(2)} €`, W - margin, y - 6, { align: "right" });
 
   y += 4;
-  if (dentroPresupuesto) {
-    addLine(`Ahorro: ${(presupuesto - precioTotal).toFixed(2)} €`, 10, false, [76, 175, 80]);
-  } else {
-    addLine(`Excede el presupuesto en: ${(precioTotal - presupuesto).toFixed(2)} €`, 10, false, [244, 67, 54]);
+  if (presupuesto !== null) {
+    if (dentroPresupuesto) {
+      addLine(`Ahorro: ${(presupuesto - precioTotal).toFixed(2)} €`, 10, false, [76, 175, 80]);
+    } else {
+      addLine(`Excede el presupuesto en: ${(precioTotal - presupuesto).toFixed(2)} €`, 10, false, [244, 67, 54]);
+    }
   }
 
   doc.save(`configuracion-pc-${Date.now()}.pdf`);

@@ -27,7 +27,8 @@ export default function StepResumen() {
     (sum, [, p]) => sum + p.precio,
     0
   );
-  const dentroPresupuesto = precioTotal <= presupuesto;
+  const tienePresupuesto = presupuesto !== null;
+  const dentroPresupuesto = tienePresupuesto && precioTotal <= presupuesto;
 
   const handleNueva = () => {
     reset();
@@ -84,32 +85,34 @@ export default function StepResumen() {
 
       <Divider sx={{ mb: 2 }} />
 
-      <Stack direction="row" justifyContent="space-between" alignItems="center" mb={1}>
-        <Typography variant="body1" color="text.secondary">
-          Presupuesto
-        </Typography>
-        <Typography variant="body1">{presupuesto.toFixed(2)}€</Typography>
-      </Stack>
+      {tienePresupuesto && (
+        <Stack direction="row" justifyContent="space-between" alignItems="center" mb={1}>
+          <Typography variant="body1" color="text.secondary">
+            Presupuesto
+          </Typography>
+          <Typography variant="body1">{presupuesto.toFixed(2)}€</Typography>
+        </Stack>
+      )}
 
       <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
         <Typography variant="h6">Total</Typography>
         <Typography
           variant="h5"
           fontWeight="bold"
-          color={dentroPresupuesto ? "success.main" : "error.main"}
+          color={tienePresupuesto ? (dentroPresupuesto ? "success.main" : "error.main") : "text.primary"}
         >
           {precioTotal.toFixed(2)}€
         </Typography>
       </Stack>
 
-      {!dentroPresupuesto && (
+      {tienePresupuesto && !dentroPresupuesto && (
         <Alert severity="warning" sx={{ mb: 2 }}>
           El precio total supera tu presupuesto en{" "}
           {(precioTotal - presupuesto).toFixed(2)}€.
         </Alert>
       )}
 
-      {dentroPresupuesto && (
+      {tienePresupuesto && dentroPresupuesto && (
         <Alert severity="success" sx={{ mb: 2 }}>
           Ahorras {(presupuesto - precioTotal).toFixed(2)}€ respecto a tu
           presupuesto.

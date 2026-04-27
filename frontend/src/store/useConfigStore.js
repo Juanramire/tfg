@@ -5,7 +5,7 @@ const useConfigStore = create((set, get) => ({
   // State
   activeStep: 0,
   perfil: null,
-  presupuesto: 1000,
+  presupuesto: null,
   selected: [],
   deselected: [],
   forced: [],
@@ -256,7 +256,7 @@ const useConfigStore = create((set, get) => ({
     set({
       activeStep: 0,
       perfil: null,
-      presupuesto: 1000,
+      presupuesto: null,
       selected: [],
       deselected: [],
       forced: [],

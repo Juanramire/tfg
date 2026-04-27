@@ -8,6 +8,8 @@ import {
   Slider,
   Stack,
   Chip,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import MovieIcon from "@mui/icons-material/Movie";
@@ -39,21 +41,31 @@ export default function StepPerfil() {
     getPerfiles().then(setPerfiles).catch(() => {});
   }, []);
 
+  const usarPresupuesto = presupuesto !== null;
+
+  const handleTogglePresupuesto = () => {
+    if (usarPresupuesto) {
+      setPresupuesto(null);
+    } else {
+      setPresupuesto(presupuestoDefecto[perfil] || 1000);
+    }
+  };
+
   const handleSelectPerfil = async (nombre) => {
     if (perfil === nombre) {
-      // Deselect
       setPerfil(null);
       await deselectFeature(nombre);
       return;
     }
 
-    // Deselect previous profile if any
     if (perfil) {
       await deselectFeature(perfil);
     }
 
     setPerfil(nombre);
-    setPresupuesto(presupuestoDefecto[nombre] || 1000);
+    if (usarPresupuesto) {
+      setPresupuesto(presupuestoDefecto[nombre] || 1000);
+    }
     await selectFeature(nombre);
   };
 
@@ -93,20 +105,38 @@ export default function StepPerfil() {
         ))}
       </Stack>
 
-      <Typography variant="h6" gutterBottom>
-        Presupuesto
-      </Typography>
-      <Stack direction="row" alignItems="center" spacing={3} sx={{ px: 2 }}>
-        <Slider
-          value={presupuesto}
-          onChange={(_, v) => setPresupuesto(v)}
-          min={300}
-          max={3000}
-          step={50}
-          valueLabelDisplay="on"
-          valueLabelFormat={(v) => `${v}€`}
+      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
+        <Typography variant="h6">Presupuesto</Typography>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={usarPresupuesto}
+              onChange={handleTogglePresupuesto}
+              size="small"
+            />
+          }
+          label={
+            <Typography variant="body2" color="text.secondary">
+              Establecer presupuesto
+            </Typography>
+          }
+          sx={{ ml: 1 }}
         />
       </Stack>
+
+      {usarPresupuesto && (
+        <Stack direction="row" alignItems="center" spacing={3} sx={{ px: 2 }}>
+          <Slider
+            value={presupuesto}
+            onChange={(_, v) => setPresupuesto(v)}
+            min={300}
+            max={3000}
+            step={50}
+            valueLabelDisplay="on"
+            valueLabelFormat={(v) => `${v}€`}
+          />
+        </Stack>
+      )}
 
       {perfil && (
         <Box textAlign="center" mt={4}>
@@ -114,14 +144,15 @@ export default function StepPerfil() {
             variant="contained"
             size="large"
             onClick={generarConfigAuto}
-            disabled={loading}
+            disabled={loading || !usarPresupuesto}
             sx={{ px: 5 }}
           >
             {loading ? "Generando..." : "Generar configuración automática"}
           </Button>
           <Typography variant="caption" display="block" color="text.secondary" mt={1}>
-            El sistema elegirá los mejores componentes para tu perfil y presupuesto.
-            Podrás modificarlos después.
+            {usarPresupuesto
+              ? "El sistema elegirá los mejores componentes para tu perfil y presupuesto. Podrás modificarlos después."
+              : "Establece un presupuesto para usar la generación automática."}
           </Typography>
         </Box>
       )}
