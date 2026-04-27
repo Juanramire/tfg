@@ -9,6 +9,7 @@ import {
   Chip,
   Alert,
   CircularProgress,
+  LinearProgress,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -80,12 +81,17 @@ export default function StepComponente({ categoria }) {
   const {
     productosPorCategoria,
     componentesElegidos,
+    presupuesto,
     excluded,
     selected,
     loading,
     loadProductos,
     elegirProducto,
   } = useConfigStore();
+
+  const precioAcumulado = Object.values(componentesElegidos).reduce((s, p) => s + p.precio, 0);
+  const porcentaje = presupuesto ? Math.min(100, (precioAcumulado / presupuesto) * 100) : null;
+  const colorBarra = porcentaje === null ? "primary" : porcentaje >= 100 ? "error" : porcentaje >= 80 ? "warning" : "success";
 
   const productos = productosPorCategoria[categoria] || [];
   const elegido = componentesElegidos[categoria];
@@ -120,6 +126,33 @@ export default function StepComponente({ categoria }) {
       <Typography variant="h6" gutterBottom>
         {LABELS[categoria] || categoria}
       </Typography>
+
+      <Box mb={2}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" mb={0.5}>
+          <Typography variant="caption" color="text.secondary">
+            Gasto acumulado
+          </Typography>
+          <Typography variant="caption" fontWeight="bold" color={colorBarra + ".main"}>
+            {presupuesto
+              ? `${precioAcumulado.toFixed(2)}€ / ${presupuesto.toFixed(2)}€`
+              : `${precioAcumulado.toFixed(2)}€`}
+          </Typography>
+        </Stack>
+        {presupuesto ? (
+          <LinearProgress
+            variant="determinate"
+            value={porcentaje}
+            color={colorBarra}
+            sx={{ borderRadius: 1, height: 6 }}
+          />
+        ) : (
+          <LinearProgress
+            variant="determinate"
+            value={0}
+            sx={{ borderRadius: 1, height: 6, opacity: 0.3 }}
+          />
+        )}
+      </Box>
 
       {educationalMsgs.map((msg) => (
         <Alert
