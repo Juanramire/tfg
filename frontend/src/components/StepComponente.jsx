@@ -23,7 +23,7 @@ const LABELS = {
   PlacaBase: "Elige una placa base",
   MemoriaRAM: "Elige la memoria RAM",
   TarjetaGrafica: "Elige una tarjeta gráfica",
-  Almacenamiento: "Elige almacenamiento",
+  Almacenamiento: "Elige almacenamiento (puedes elegir varios)",
   FuenteAlimentacion: "Elige la fuente de alimentación",
   Chasis: "Elige la caja",
   Refrigeracion: "Elige la refrigeración",
@@ -89,12 +89,19 @@ export default function StepComponente({ categoria }) {
     elegirProducto,
   } = useConfigStore();
 
-  const precioAcumulado = Object.values(componentesElegidos).reduce((s, p) => s + p.precio, 0);
+  const precioAcumulado = Object.values(componentesElegidos).reduce(
+    (s, p) => s + (Array.isArray(p) ? p.reduce((a, item) => a + item.precio, 0) : p.precio),
+    0
+  );
   const porcentaje = presupuesto ? Math.min(100, (precioAcumulado / presupuesto) * 100) : null;
   const colorBarra = porcentaje === null ? "primary" : porcentaje >= 100 ? "error" : porcentaje >= 80 ? "warning" : "success";
 
   const productos = productosPorCategoria[categoria] || [];
   const elegido = componentesElegidos[categoria];
+  const isAlmacenamiento = categoria === "Almacenamiento";
+  const elegidosArray = isAlmacenamiento
+    ? Array.isArray(elegido) ? elegido : elegido ? [elegido] : []
+    : null;
   const isGPU = categoria === "TarjetaGrafica";
   const gpuExcluida = excluded.includes("TarjetaGrafica");
   const educationalMsgs = getMessages(categoria, excluded, selected);
@@ -179,7 +186,9 @@ export default function StepComponente({ categoria }) {
 
       <Stack spacing={2}>
         {productos.map((p) => {
-          const isSelected = elegido?.nombre === p.nombre;
+          const isSelected = isAlmacenamiento
+            ? elegidosArray.some((e) => e.nombre === p.nombre)
+            : elegido?.nombre === p.nombre;
           return (
             <Card
               key={p.nombre}

@@ -23,11 +23,10 @@ export default function StepResumen() {
   const { componentesElegidos, presupuesto, perfil, reset, prevStep, goToStep } =
     useConfigStore();
 
-  const componentes = Object.entries(componentesElegidos);
-  const precioTotal = componentes.reduce(
-    (sum, [, p]) => sum + p.precio,
-    0
+  const componentes = Object.entries(componentesElegidos).flatMap(([cat, p]) =>
+    Array.isArray(p) ? p.map((item) => [cat, item]) : [[cat, p]]
   );
+  const precioTotal = componentes.reduce((sum, [, p]) => sum + p.precio, 0);
   const tienePresupuesto = presupuesto !== null;
   const dentroPresupuesto = tienePresupuesto && precioTotal <= presupuesto;
 
@@ -61,7 +60,7 @@ export default function StepResumen() {
 
       <Stack spacing={1.5} mb={3}>
         {componentes.map(([categoria, producto]) => (
-          <Card key={categoria} variant="outlined">
+          <Card key={`${categoria}-${producto.nombre}`} variant="outlined">
             <CardContent sx={{ py: 1.5, "&:last-child": { pb: 1.5 } }}>
               <Stack direction="row" justifyContent="space-between" alignItems="center">
                 <Box>

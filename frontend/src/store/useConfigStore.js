@@ -101,7 +101,7 @@ const useConfigStore = create((set, get) => ({
       // Build selected features from OTHER categories only (not the current one)
       const otherFeatures = Object.entries(state.componentesElegidos)
         .filter(([cat]) => cat !== categoria)
-        .flatMap(([, p]) => p.features);
+        .flatMap(([, p]) => Array.isArray(p) ? p.flatMap((item) => item.features) : p.features);
 
       // Add profile features if any
       const profileFeatures = state.perfil ? [state.perfil] : [];
@@ -129,30 +129,50 @@ const useConfigStore = create((set, get) => ({
   },
 
   // Choose a specific product for a category (click again to deselect)
+  // Almacenamiento supports multiple products (array); all others support one.
   elegirProducto: async (categoria, producto) => {
     const state = get();
-    const yaElegido = state.componentesElegidos[categoria]?.nombre === producto.nombre;
 
     // Build features from all OTHER categories
     const otherFeatures = Object.entries(state.componentesElegidos)
       .filter(([cat]) => cat !== categoria)
-      .flatMap(([, p]) => p.features);
+      .flatMap(([, p]) => Array.isArray(p) ? p.flatMap((item) => item.features) : p.features);
 
     const profileFeatures = state.perfil ? [state.perfil] : [];
 
     let newComponentes;
     let newSelected;
 
-    if (yaElegido) {
-      // Deselect: remove this category from chosen components
-      newComponentes = Object.fromEntries(
-        Object.entries(state.componentesElegidos).filter(([cat]) => cat !== categoria)
-      );
-      newSelected = [...new Set([...otherFeatures, ...profileFeatures])];
+    if (categoria === "Almacenamiento") {
+      const current = Array.isArray(state.componentesElegidos["Almacenamiento"])
+        ? state.componentesElegidos["Almacenamiento"]
+        : state.componentesElegidos["Almacenamiento"]
+          ? [state.componentesElegidos["Almacenamiento"]]
+          : [];
+      const yaElegido = current.some((p) => p.nombre === producto.nombre);
+      const newArray = yaElegido
+        ? current.filter((p) => p.nombre !== producto.nombre)
+        : [...current, producto];
+
+      if (newArray.length === 0) {
+        newComponentes = Object.fromEntries(
+          Object.entries(state.componentesElegidos).filter(([cat]) => cat !== "Almacenamiento")
+        );
+      } else {
+        newComponentes = { ...state.componentesElegidos, Almacenamiento: newArray };
+      }
+      newSelected = [...new Set([...otherFeatures, ...newArray.flatMap((p) => p.features), ...profileFeatures])];
     } else {
-      // Select new product
-      newComponentes = { ...state.componentesElegidos, [categoria]: producto };
-      newSelected = [...new Set([...otherFeatures, ...producto.features, ...profileFeatures])];
+      const yaElegido = state.componentesElegidos[categoria]?.nombre === producto.nombre;
+      if (yaElegido) {
+        newComponentes = Object.fromEntries(
+          Object.entries(state.componentesElegidos).filter(([cat]) => cat !== categoria)
+        );
+        newSelected = [...new Set([...otherFeatures, ...profileFeatures])];
+      } else {
+        newComponentes = { ...state.componentesElegidos, [categoria]: producto };
+        newSelected = [...new Set([...otherFeatures, ...producto.features, ...profileFeatures])];
+      }
     }
 
     set({ componentesElegidos: newComponentes, selected: newSelected, loading: true });
@@ -183,7 +203,12 @@ const useConfigStore = create((set, get) => ({
       const elegidos = {};
       const allFeatures = [];
       for (const comp of resultado.componentes) {
-        elegidos[comp.categoria] = comp.producto;
+        if (comp.categoria === "Almacenamiento") {
+          if (!elegidos["Almacenamiento"]) elegidos["Almacenamiento"] = [];
+          elegidos["Almacenamiento"].push(comp.producto);
+        } else {
+          elegidos[comp.categoria] = comp.producto;
+        }
         allFeatures.push(...comp.producto.features);
       }
 
@@ -216,7 +241,12 @@ const useConfigStore = create((set, get) => ({
       const elegidos = {};
       const allFeatures = [];
       for (const comp of resultado.componentes) {
-        elegidos[comp.categoria] = comp.producto;
+        if (comp.categoria === "Almacenamiento") {
+          if (!elegidos["Almacenamiento"]) elegidos["Almacenamiento"] = [];
+          elegidos["Almacenamiento"].push(comp.producto);
+        } else {
+          elegidos[comp.categoria] = comp.producto;
+        }
         allFeatures.push(...comp.producto.features);
       }
 
@@ -246,7 +276,8 @@ const useConfigStore = create((set, get) => ({
   getPrecioTotal: () => {
     const state = get();
     return Object.values(state.componentesElegidos).reduce(
-      (sum, p) => sum + p.precio,
+      (sum, p) =>
+        sum + (Array.isArray(p) ? p.reduce((s, item) => s + item.precio, 0) : p.precio),
       0
     );
   },
