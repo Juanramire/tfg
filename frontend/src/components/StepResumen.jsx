@@ -13,13 +13,14 @@ import {
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DownloadIcon from "@mui/icons-material/Download";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import EditIcon from "@mui/icons-material/Edit";
 import useConfigStore from "../store/useConfigStore";
 import PriceLinks from "./PriceLinks";
 import { exportJSON, exportPDF } from "../utils/exportConfig";
 
 export default function StepResumen() {
   const navigate = useNavigate();
-  const { componentesElegidos, presupuesto, perfil, reset, prevStep } =
+  const { componentesElegidos, presupuesto, perfil, reset, prevStep, goToStep } =
     useConfigStore();
 
   const componentes = Object.entries(componentesElegidos);
@@ -133,6 +134,13 @@ export default function StepResumen() {
           onClick={() => exportJSON(componentesElegidos, presupuesto, perfil)}
         >
           Exportar JSON
+        </Button>
+        <Button
+          variant="outlined"
+          startIcon={<EditIcon />}
+          onClick={() => goToStep(1)}
+        >
+          Modificar configuración
         </Button>
         <Button
           variant="outlined"

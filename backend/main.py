@@ -1,9 +1,16 @@
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from routes.configuracion import router as configuracion_router
 from routes.features import router as features_router
 from routes.productos import router as productos_router
-from routes.configuracion import router as configuracion_router
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(levelname)s:%(name)s:%(message)s",
+)
 
 app = FastAPI(title="PC Configurador API", version="0.1.0")
 
