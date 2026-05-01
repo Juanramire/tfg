@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.coverage
+.pytest_cache/
+tests/
+scraper_coolmod.py
+import_catalogo.py
+data/
+requirements-dev.txt

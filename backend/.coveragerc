@@ -1,0 +1,6 @@
+[run]
+omit =
+    scraper_coolmod.py
+    import_catalogo.py
+    venv/*
+    tests/*
