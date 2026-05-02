@@ -32,3 +32,7 @@ Thumbs.db
 node_modules/
 dist/
 build/
+
+# Playwright
+frontend/test-results/
+frontend/playwright-report/
