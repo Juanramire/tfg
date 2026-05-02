@@ -1,11 +1,12 @@
 from fastapi import APIRouter, Query
 
+from models.producto import Producto
 from services.db import get_productos
 
 router = APIRouter(prefix="/api/productos", tags=["productos"])
 
 
-@router.get("/")
+@router.get("/", response_model=dict[str, int | list[Producto]])
 def listar_productos(
     categoria: str | None = Query(
         None,
