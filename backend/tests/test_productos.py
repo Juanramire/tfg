@@ -34,12 +34,12 @@ class TestListarProductos:
             assert "AM5" in p["features"]
 
     def test_filtrar_categoria_y_features(self):
-        r = client.get("/api/productos/?categoria=PlacaBase&features=LGA1700,DDR5")
+        r = client.get("/api/productos/?categoria=PlacaBase&features=AM5,DDR5")
         data = r.json()
         assert data["total"] > 0
         for p in data["productos"]:
             assert p["categoria"] == "PlacaBase"
-            assert "LGA1700" in p["features"]
+            assert "AM5" in p["features"]
             assert "DDR5" in p["features"]
 
     def test_categoria_sin_resultados(self):
