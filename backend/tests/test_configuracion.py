@@ -34,6 +34,14 @@ MOCK_OFIMATICA = {
     "explicacion": "Configuración básica para ofimática.",
 }
 
+MOCK_GAMING_CONTRADICTORIO = {
+    "perfil": "Gaming",
+    "presupuesto": 500.0,
+    "selected": ["Gaming"],
+    "deselected": ["TarjetaGrafica"],
+    "explicacion": "Gaming económico sin GPU (inconsistente con el modelo).",
+}
+
 
 class TestPresupuesto:
     def test_presupuesto_1000(self):
@@ -207,6 +215,21 @@ class TestConsultaIA:
         data = r.json()
         assert "explicacion" in data
         assert len(data["explicacion"]) > 0
+
+    def test_consulta_gaming_siempre_incluye_gpu(self):
+        """Gaming profile must always include GPU even if Gemini deselects TarjetaGrafica."""
+        with patch(
+            "services.gemini_service.interpretar_consulta",
+            return_value=MOCK_GAMING_CONTRADICTORIO,
+        ):
+            r = client.post(
+                "/api/configuracion/consulta",
+                json={"consulta": "Quiero jugar minecraft gastándome lo mínimo"},
+            )
+        assert r.status_code == 200
+        data = r.json()
+        categorias = [c["categoria"] for c in data["componentes"]]
+        assert "TarjetaGrafica" in categorias
 
     def test_consulta_config_valida_flamapy(self):
         with patch(

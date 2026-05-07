@@ -65,14 +65,14 @@ Dado el mensaje del usuario, responde ÚNICAMENTE con un JSON válido con esta e
 }}
 
 Reglas de interpretación:
-- "jugar", "gaming", "videojuegos" → perfil Gaming
+- "jugar", "gaming", "videojuegos", cualquier juego (Minecraft, Fortnite, etc.) → perfil Gaming
 - "editar vídeo", "renderizar", "After Effects", "Premiere" → perfil Edicion
 - "programar", "desarrollo", "código", "IDE" → perfil Programacion
 - "ofimática", "trabajo básico", "navegar", "Word", "Excel" → perfil Ofimatica
 - "4K", "ultra settings", "máximo rendimiento" → GPU_Gama_Alta
 - "1080p", "calidad media" → GPU_Gama_Media
 Rangos de presupuesto orientativos según contexto:
-- "muy barato", "lo más barato posible", "menos de 500" → 400-500€
+- "lo mínimo", "lo más barato posible", "menos de 500", "muy barato" → 400-500€
 - "barato", "económico", "poco presupuesto", "básico" → 500-650€
 - "sin gastarme mucho", "asequible", "sin arruinarme", "moderado" → 700-900€
 - "gama media", "equilibrado", "relación calidad-precio" → 900-1200€
@@ -81,6 +81,12 @@ Rangos de presupuesto orientativos según contexto:
 - Si menciona un juego concreto de altos requisitos (Cyberpunk, Elden Ring, Alan Wake 2 en 4K) → Gaming + GPU_Gama_Alta + presupuesto mínimo 1500€
 - Si menciona juego en 1080p o "gama media" → Gaming + GPU_Gama_Media + presupuesto 900-1100€
 - Si menciona edición en 4K → Edicion + RAM_32GB + presupuesto mínimo 1400€
+
+RESTRICCIONES CRÍTICAS (nunca violarlas):
+- Si el usuario menciona "gaming", "jugar", o cualquier videojuego, el perfil SIEMPRE debe ser "Gaming" aunque pida algo aparentemente contradictorio (como "sin GPU" o "sin tarjeta gráfica"). El backend resuelve las inconsistencias; tú solo asegura que el perfil sea correcto.
+- Si perfil es Gaming o Edicion, NUNCA añadas TarjetaGrafica a deselected.
+- Si perfil es Gaming, deselected debe estar vacío (Gaming tiene sus propias restricciones de compatibilidad).
+- Si un juego es de bajos requisitos (Minecraft, Roblox, etc.), usa presupuesto bajo (400-600€) pero mantén perfil Gaming con deselected vacío.
 
 Responde SOLO con el JSON, sin texto adicional, sin markdown."""
 

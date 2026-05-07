@@ -74,11 +74,38 @@ def configurar_por_consulta(request: ConsultaRequest):
         selected = list(set(selected + PERFILES[perfil]["selected"]))
         deselected = list(set(deselected + PERFILES[perfil]["deselected"]))
 
+    # Remove from deselected any feature forced by the UVL model given the selected set.
+    # This prevents Gemini from violating UVL constraints (e.g. Gaming => TarjetaGrafica,
+    # AMD => AM4|AM5, Intel_Gama_Alta => Refrigeracion_Liquida, etc.).
+    # Uses `selected` after the profile merge, so profile-implied features are included.
+    if selected and deselected:
+        from services.flamapy_service import flamapy_service
+
+        forced_by_model = set(flamapy_service.propagate(selected, [])["forced"])
+        deselected = [f for f in deselected if f not in forced_by_model]
+
+    # Ensure minimum budget
+    presupuesto = max(presupuesto, 300.0)
+
     resultado = generar_por_presupuesto(
         presupuesto=presupuesto,
         selected=selected,
         deselected=deselected,
     )
+
+    # If the model was unsatisfiable (contradictory constraints from Gemini),
+    # retry ignoring deselected so the user always gets a usable configuration.
+    if not resultado["componentes"] and deselected:
+        resultado = generar_por_presupuesto(
+            presupuesto=presupuesto,
+            selected=selected,
+            deselected=[],
+        )
+        resultado["avisos"].insert(
+            0,
+            "Algunas restricciones indicadas eran incompatibles con el perfil y se han ignorado.",
+        )
+
     resultado["perfil"] = perfil
     resultado["explicacion"] = interpretacion.get("explicacion", "")
     resultado["interpretacion"] = interpretacion
