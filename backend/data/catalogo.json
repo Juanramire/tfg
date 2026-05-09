@@ -48,7 +48,7 @@
     "specs": {
       "nucleos": 8,
       "hilos": 16,
-      "frecuencia_base": "0.0 GHz",
+      "frecuencia_base": "4.7 GHz",
       "frecuencia_boost": "5.2 GHz",
       "tdp": 120
     }
@@ -154,11 +154,11 @@
     ],
     "precio": 699.95,
     "specs": {
-      "nucleos": null,
-      "hilos": null,
-      "frecuencia_base": null,
+      "nucleos": 24,
+      "hilos": 32,
+      "frecuencia_base": "3.2 GHz",
       "frecuencia_boost": "6.2 GHz",
-      "tdp": null
+      "tdp": 150
     }
   },
   {
@@ -198,42 +198,6 @@
     }
   },
   {
-    "nombre": "AMD Ryzen 7 7800X3D Socket AM5 Boxed",
-    "marca": "AMD",
-    "categoria": "Procesador",
-    "features": [
-      "AMD",
-      "AMD_Gama_Media",
-      "AM5"
-    ],
-    "precio": 349.94,
-    "specs": {
-      "nucleos": 8,
-      "hilos": 16,
-      "frecuencia_base": "4.2 GHz",
-      "frecuencia_boost": "5.0 GHz",
-      "tdp": 120
-    }
-  },
-  {
-    "nombre": "AMD Ryzen 7 9800X3D Socket AM5 Boxed",
-    "marca": "AMD",
-    "categoria": "Procesador",
-    "features": [
-      "AMD",
-      "AMD_Gama_Alta",
-      "AM5"
-    ],
-    "precio": 444.95,
-    "specs": {
-      "nucleos": 8,
-      "hilos": 16,
-      "frecuencia_base": "N/A",
-      "frecuencia_boost": "5.2 GHz",
-      "tdp": 120
-    }
-  },
-  {
     "nombre": "AMD Ryzen 7 9800X3D 5.2GHz Socket AM5 Tray",
     "marca": "AMD",
     "categoria": "Procesador",
@@ -246,7 +210,7 @@
     "specs": {
       "nucleos": 8,
       "hilos": 16,
-      "frecuencia_base": "N/A",
+      "frecuencia_base": "4.7 GHz",
       "frecuencia_boost": "5.2 GHz",
       "tdp": 120
     }
@@ -374,7 +338,7 @@
       "hilos": 12,
       "frecuencia_base": "3.7 GHz",
       "frecuencia_boost": "5.0 GHz",
-      "tdp": 0
+      "tdp": 65
     }
   },
   {
@@ -388,11 +352,11 @@
     ],
     "precio": 649.95,
     "specs": {
-      "nucleos": 0,
-      "hilos": 0,
-      "frecuencia_base": null,
-      "frecuencia_boost": null,
-      "tdp": 0
+      "nucleos": 16,
+      "hilos": 32,
+      "frecuencia_base": "4.0 GHz",
+      "frecuencia_boost": "5.7 GHz",
+      "tdp": 170
     }
   },
   {
@@ -424,11 +388,11 @@
     ],
     "precio": 164.95,
     "specs": {
-      "nucleos": 0,
-      "hilos": 0,
-      "frecuencia_base": null,
-      "frecuencia_boost": null,
-      "tdp": 0
+      "nucleos": 6,
+      "hilos": 12,
+      "frecuencia_base": "4.3 GHz",
+      "frecuencia_boost": "5.0 GHz",
+      "tdp": 65
     }
   },
   {
@@ -468,7 +432,7 @@
     }
   },
   {
-    "nombre": "AMD Ryzen 9 9950X3D2 5.6GHz Socket AM5 Boxed",
+    "nombre": "AMD Ryzen 9 9950X3D 5.7GHz Socket AM5 Boxed",
     "marca": "AMD",
     "categoria": "Procesador",
     "features": [
@@ -480,9 +444,9 @@
     "specs": {
       "nucleos": 16,
       "hilos": 32,
-      "frecuencia_base": "4.3 GHz",
-      "frecuencia_boost": "5.6 GHz",
-      "tdp": 200
+      "frecuencia_base": "4.0 GHz",
+      "frecuencia_boost": "5.7 GHz",
+      "tdp": 170
     }
   },
   {
@@ -589,7 +553,8 @@
       "nucleos": 16,
       "hilos": 24,
       "frecuencia_base": "3.4 GHz",
-      "frecuencia_boost": "5.4 GHz"
+      "frecuencia_boost": "5.4 GHz",
+      "tdp": 125
     }
   },
   {
@@ -2017,7 +1982,8 @@
     ],
     "precio": 809.95,
     "specs": {
-      "vram": "16 GB GDDR6"
+      "vram": "16 GB GDDR6",
+      "tdp": 220
     }
   },
   {
@@ -2029,7 +1995,8 @@
     ],
     "precio": 599.95,
     "specs": {
-      "vram": "16 GB GDDR7"
+      "vram": "16 GB GDDR7",
+      "tdp": 180
     }
   },
   {
@@ -2041,7 +2008,8 @@
     ],
     "precio": 269.95,
     "specs": {
-      "vram": "8 GB GDDR6"
+      "vram": "8 GB GDDR6",
+      "tdp": 150
     }
   },
   {
@@ -2053,7 +2021,8 @@
     ],
     "precio": 649.95,
     "specs": {
-      "vram": "12 GB GDDR7"
+      "vram": "12 GB GDDR7",
+      "tdp": 250
     }
   },
   {
@@ -2128,10 +2097,10 @@
     "features": [
       "GPU_Gama_Alta"
     ],
-    "precio": 1329.95,
+    "precio": 1299.95,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": null
+      "tdp": 360
     }
   },
   {
@@ -2157,7 +2126,7 @@
     "precio": 599.95,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": null
+      "tdp": 180
     }
   },
   {
@@ -2170,7 +2139,7 @@
     "precio": 1079.95,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": null
+      "tdp": 300
     }
   },
   {
@@ -2183,20 +2152,7 @@
     "precio": 699.95,
     "specs": {
       "vram": "12 GB GDDR7",
-      "tdp": null
-    }
-  },
-  {
-    "nombre": "Gigabyte GeForce RTX 5080 WindForce SFF 16GB GDDR7",
-    "marca": "Gigabyte",
-    "categoria": "TarjetaGrafica",
-    "features": [
-      "GPU_Gama_Alta"
-    ],
-    "precio": 1299.95,
-    "specs": {
-      "vram": "16 GB GDDR7",
-      "tdp": null
+      "tdp": 250
     }
   },
   {
@@ -2209,7 +2165,7 @@
     "precio": 649.95,
     "specs": {
       "vram": "16 GB GDDR6",
-      "tdp": null
+      "tdp": 220
     }
   },
   {
@@ -2222,7 +2178,7 @@
     "precio": 419.95,
     "specs": {
       "vram": "8 GB GDDR7",
-      "tdp": null
+      "tdp": 180
     }
   },
   {
@@ -2235,7 +2191,7 @@
     "precio": 1449.95,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": null
+      "tdp": 360
     }
   },
   {
@@ -2248,7 +2204,7 @@
     "precio": 749.95,
     "specs": {
       "vram": "16 GB GDDR6",
-      "tdp": null
+      "tdp": 220
     }
   },
   {
@@ -2260,7 +2216,8 @@
     ],
     "precio": 719.95,
     "specs": {
-      "vram": "16 GB GDDR6"
+      "vram": "16 GB GDDR6",
+      "tdp": 220
     }
   },
   {
@@ -2272,7 +2229,8 @@
     ],
     "precio": 449.95,
     "specs": {
-      "vram": "16 GB GDDR6"
+      "vram": "16 GB GDDR6",
+      "tdp": 150
     }
   },
   {
@@ -2284,7 +2242,8 @@
     ],
     "precio": 1029.95,
     "specs": {
-      "vram": "16 GB GDDR7"
+      "vram": "16 GB GDDR7",
+      "tdp": 300
     }
   },
   {
@@ -2294,9 +2253,10 @@
     "features": [
       "GPU_Gama_Media"
     ],
-    "precio": 502.95,
+    "precio": 484.96,
     "specs": {
-      "vram": "16 GB GDDR6"
+      "vram": "16 GB GDDR6",
+      "tdp": 150
     }
   },
   {
@@ -2308,7 +2268,8 @@
     ],
     "precio": 749.95,
     "specs": {
-      "vram": "16 GB GDDR6"
+      "vram": "16 GB GDDR6",
+      "tdp": 220
     }
   },
   {
@@ -2320,7 +2281,8 @@
     ],
     "precio": 1329.95,
     "specs": {
-      "vram": "16 GB GDDR7"
+      "vram": "16 GB GDDR7",
+      "tdp": 360
     }
   },
   {
@@ -2332,7 +2294,8 @@
     ],
     "precio": 1399.95,
     "specs": {
-      "vram": "16 GB GDDR7"
+      "vram": "16 GB GDDR7",
+      "tdp": 360
     }
   },
   {
@@ -2344,7 +2307,8 @@
     ],
     "precio": 479.95,
     "specs": {
-      "vram": "16GB GDDR6"
+      "vram": "16GB GDDR6",
+      "tdp": 150
     }
   },
   {
@@ -2448,7 +2412,7 @@
     "precio": 684.95,
     "specs": {
       "vram": "12 GB GDDR7",
-      "tdp": null
+      "tdp": 250
     }
   },
   {
@@ -2461,7 +2425,7 @@
     "precio": 779.95,
     "specs": {
       "vram": "12 GB GDDR7",
-      "tdp": null
+      "tdp": 250
     }
   },
   {
@@ -2474,7 +2438,7 @@
     "precio": 1519.95,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": null
+      "tdp": 360
     }
   },
   {
@@ -2487,7 +2451,7 @@
     "precio": 474.95,
     "specs": {
       "vram": "8 GB GDDR7",
-      "tdp": null
+      "tdp": 180
     }
   },
   {
@@ -2500,7 +2464,7 @@
     "precio": 1199.94,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": null
+      "tdp": 360
     }
   },
   {
@@ -2582,19 +2546,6 @@
     }
   },
   {
-    "nombre": "Asus Dual Radeon RX 9060 XT White Edition 16GB GDDR6",
-    "marca": "Asus",
-    "categoria": "TarjetaGrafica",
-    "features": [
-      "GPU_Gama_Media"
-    ],
-    "precio": 484.96,
-    "specs": {
-      "vram": "16 GB GDDR6",
-      "tdp": 0
-    }
-  },
-  {
     "nombre": "Gigabyte GeForce RTX 5070 Ti EAGLE OC ICE 16GB GDDR7 DLSS4",
     "marca": "Gigabyte",
     "categoria": "TarjetaGrafica",
@@ -2604,7 +2555,7 @@
     "precio": 999.94,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": 0
+      "tdp": 300
     }
   },
   {
@@ -2617,7 +2568,7 @@
     "precio": 1099.95,
     "specs": {
       "vram": "16 GB GDDR7",
-      "tdp": 0
+      "tdp": 300
     }
   },
   {
@@ -2630,7 +2581,7 @@
     "precio": 719.95,
     "specs": {
       "vram": "12 GB GDDR7",
-      "tdp": 0
+      "tdp": 250
     }
   },
   {
@@ -3654,7 +3605,7 @@
     "features": [
       "Caja_ATX"
     ],
-    "precio": 109.95,
+    "precio": 74.95,
     "specs": {
       "Color": "Negro",
       "Materiales": "Acero / Cristal templado4,0 mm",
@@ -3679,9 +3630,11 @@
     "marca": "Lian Li",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX"
+      "Caja_ATX",
+      "Caja_MicroATX",
+      "Caja_MiniITX"
     ],
-    "precio": 169.95,
+    "precio": 139.95,
     "specs": {
       "Dimensiones": "478 mm (Profundidad) × 290 mm (Ancho) × 471 mm (Alto)",
       "Material": "Vidrio templado de 4.0 mm, aluminio, acero",
@@ -3703,33 +3656,6 @@
       "Puertos de E/S": "USB 3.0 × 2, USB 3.1 Tipo C × 1, Audio × 1",
       "Botones": "Botón de color × 1, Botón de modo × 1, Botón de brillo × 1, Botón de reinicio × 1, Botón de encendido × 1",
       "Filtro de Polvo": "1 × inferior"
-    }
-  },
-  {
-    "nombre": "Lian Li Lancool 216 Mesh RGB Negro",
-    "marca": "Lian Li",
-    "categoria": "Chasis",
-    "features": [
-      "Caja_ATX"
-    ],
-    "precio": 74.95,
-    "specs": {
-      "Color": "Negro",
-      "Materiales": "Acero / Cristal templado4,0 mm",
-      "Dimensiones (F × An × Al)": "480,9 × 235 × 491,7 mm",
-      "Ranuras de expansión": "7",
-      "Compatibilidad de placa base": "E-ATX(≤280 mm) /ATX/Micro-ATX/Mini-ITX",
-      "Frontal": "360 / 280 / 240 mm",
-      "Superior": "360 / 280 / 240 mm",
-      "Cubierta PSU (air cooling)": "2 × 120 mm/2 × 140 mm",
-      "Trasero": "1 × 140 mm PWM",
-      "Bracket PCIe": "1 × 120 mm",
-      "Inferior": "240 mm",
-      "Longitud GPU": "hasta392 mm",
-      "Altura cooler CPU": "hasta180,5 mm",
-      "Fuente de alimentación": "ATX(longitud ≤220 mm)",
-      "Botones": "Encendido,Reset,Color efecto ARGB (borde del ventilador),Modo efecto ARGB (aro del ventilador),Color efecto ARGB (aspas del ventilador),Modo efecto ARGB (aspas del ventilador)",
-      "Puertos": "2 × USB 3.0,1 × USB-C,1 × audio combinado"
     }
   },
   {
@@ -3903,39 +3829,6 @@
       "Pantalla incluida": "No",
       "Ventiladores preinstalados": "2 × 170 mm",
       "Familia de producto": "Lancool"
-    }
-  },
-  {
-    "nombre": "Lian Li O11D EVO RGB Negro",
-    "marca": "Lian Li",
-    "categoria": "Chasis",
-    "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
-    ],
-    "precio": 139.95,
-    "specs": {
-      "Dimensiones": "478 mm (Profundidad) × 290 mm (Ancho) × 471 mm (Alto)",
-      "Material": "Vidrio templado de 4.0 mm, aluminio, acero",
-      "Soporte a la Madre": "E-ATX (menos de 280 mm), ATX, M-ATX, MINI-ITX",
-      "Ranuras de Expansión": "7",
-      "Almacenamiento": "Soporte de ventilador lateral: 2 × 3.5 ″ HDD o 4 × 2.5 ″ SSDDetrás de la bandeja MB: 2 × SSD de 2.5 ″Caja de disco duro: 2 × HDD de 3.5 ″ o SSD de 2.5 ″",
-      "Soporte de ventilador lateral": "2 × 3.5 ″ HDD o 4 × 2.5 ″ SSD",
-      "Detrás de la bandeja MB": "2 × SSD de 2.5 ″",
-      "Caja de disco duro": "2 × HDD de 3.5 ″ o SSD de 2.5 ″",
-      "Soporte de Radiador": "Superior: 240 mm × 1 o 360 mm × 1 o 420 mm × 1Lado: 240 mm × 1 o 280 mm × 1 o 360 mm × 1Inferior: 240 mm × 1 o 280 mm × 1 o 360 mm × 1",
-      "Superior": "120 mm × 3 o 140 mm × 3",
-      "Lado": "120 mm × 3 o 140 mm × 3",
-      "Inferior": "240 mm × 1 o 280 mm × 1 o 360 mm × 1",
-      "Soporte de Ventilador": "Superior: 120 mm × 3 o 140 mm × 3Lado: 120 mm × 3 o 140 mm × 3Parte inferior: 120 mm × 3 o 140 mm × 3Trasero: 120 mm × 1",
-      "Parte inferior": "120 mm × 3 o 140 mm × 3",
-      "Trasero": "120 mm × 1",
-      "Espacio Longitud GPU": "455.7 mm (máx.)",
-      "Espacio Libre de Altura del Enfriador de CPU": "167 mm (máx.)",
-      "Puertos de E/S": "USB 3.0 × 2, USB 3.1 Tipo C × 1, Audio × 1",
-      "Botones": "Botón de color × 1, Botón de modo × 1, Botón de brillo × 1, Botón de reinicio × 1, Botón de encendido × 1",
-      "Filtro de Polvo": "1 × inferior"
     }
   },
   {
@@ -4161,7 +4054,9 @@
     "nombre": "Lian Li Lancool 207 ARGB Negro",
     "marca": "Lian Li",
     "categoria": "Chasis",
-    "features": ["Caja_ATX"],
+    "features": [
+      "Caja_ATX"
+    ],
     "precio": 89.95,
     "specs": {
       "Frontal": "140 mm x 2",
@@ -4184,16 +4079,6 @@
       "Caja_ATX"
     ],
     "precio": 84.95,
-    "specs": {}
-  },
-  {
-    "nombre": "Lian Li Lancool 217 Infinity Negra",
-    "marca": "Lian Li",
-    "categoria": "Chasis",
-    "features": [
-      "Caja_ATX"
-    ],
-    "precio": 99.95,
     "specs": {}
   },
   {

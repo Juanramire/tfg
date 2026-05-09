@@ -1,13 +1,15 @@
 import { jsPDF } from "jspdf";
 
 export function exportJSON(componentesElegidos, presupuesto, perfil) {
-  const componentes = Object.entries(componentesElegidos).map(([categoria, p]) => ({
-    categoria,
-    nombre: p.nombre,
-    marca: p.marca,
-    precio: p.precio,
-    specs: p.specs,
-  }));
+  const componentes = Object.entries(componentesElegidos).flatMap(([categoria, p]) =>
+    (Array.isArray(p) ? p : [p]).map((item) => ({
+      categoria,
+      nombre: item.nombre,
+      marca: item.marca,
+      precio: item.precio,
+      specs: item.specs,
+    }))
+  );
 
   const precioTotal = componentes.reduce((s, c) => s + c.precio, 0);
 
@@ -73,7 +75,9 @@ export function exportPDF(componentesElegidos, presupuesto, perfil) {
   addLine("Componentes seleccionados", 12, true);
   y += 2;
 
-  const componentes = Object.entries(componentesElegidos);
+  const componentes = Object.entries(componentesElegidos).flatMap(([categoria, p]) =>
+    (Array.isArray(p) ? p : [p]).map((item) => [categoria, item])
+  );
   let precioTotal = 0;
 
   componentes.forEach(([categoria, p]) => {
