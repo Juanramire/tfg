@@ -12,12 +12,12 @@ const RULES = {
     {
       anyOf: ["Intel"],
       message:
-        "Has seleccionado un socket AMD (AM4/AM5). Solo son compatibles procesadores AMD con esta plataforma.",
+        "Has elegido un procesador AMD. Necesitarás una placa base con socket AMD (AM4 o AM5).",
     },
     {
       anyOf: ["AMD"],
       message:
-        "Has seleccionado un socket Intel (LGA1700/LGA1851). Solo son compatibles procesadores Intel con esta plataforma.",
+        "Has elegido un procesador Intel. Necesitarás una placa base con socket Intel (LGA1700 o LGA1851).",
     },
   ],
 
@@ -25,12 +25,12 @@ const RULES = {
     {
       allOf: ["LGA1700", "LGA1851"],
       message:
-        "Has seleccionado un procesador AMD. Solo son compatibles placas base con socket AM4 o AM5.",
+        "Has elegido un procesador AMD. Solo se muestran placas base con socket AMD (AM4 o AM5).",
     },
     {
       allOf: ["AM4", "AM5"],
       message:
-        "Has seleccionado un procesador Intel. Solo son compatibles placas base con socket LGA1700 o LGA1851.",
+        "Has elegido un procesador Intel. Solo se muestran placas base con socket Intel (LGA1700 o LGA1851).",
     },
   ],
 
@@ -39,13 +39,13 @@ const RULES = {
       anyOf: ["DDR4"],
       requiresAnySelected: ["AM5", "LGA1851"],
       message:
-        "Tu socket solo es compatible con memoria DDR5 (plataformas AM5 e Intel LGA1851).",
+        "Tu procesador y placa base solo admiten memoria DDR5. Las opciones DDR4 no están disponibles.",
     },
     {
       anyOf: ["DDR5"],
       requiresAnySelected: ["AM4"],
       message:
-        "Tu socket solo es compatible con memoria DDR4 (plataforma AM4).",
+        "Tu procesador y placa base solo admiten memoria DDR4. Las opciones DDR5 no están disponibles.",
     },
     {
       // Edicion excluye RAM_8GB y RAM_16GB → necesita 32 GB
@@ -66,6 +66,12 @@ const RULES = {
 
   TarjetaGrafica: [
     {
+      anyOf: ["Gaming"],
+      requiresAnySelected: ["Ofimatica"],
+      message:
+        "Para ofimática, una GPU dedicada no es necesaria. Si tu procesador incluye gráficos integrados, puedes pasar al siguiente paso.",
+    },
+    {
       anyOf: ["GPU_Gama_Baja"],
       requiresAnySelected: ["Gaming"],
       message:
@@ -85,7 +91,7 @@ const RULES = {
       noneOf: ["PSU_650W"],
       requiresAnySelected: ["GPU_Gama_Media"],
       message:
-        "Tu GPU requiere una fuente de alimentación de al menos 650W.",
+        "Tu tarjeta gráfica de gama media necesita una fuente de alimentación de al menos 650W para funcionar correctamente.",
     },
   ],
 
@@ -98,9 +104,24 @@ const RULES = {
     },
     {
       anyOf: ["Caja_MiniITX"],
+      noneOf: ["Caja_MicroATX"],
+      requiresAnySelected: ["Placa_MicroATX"],
+      message:
+        "Has elegido una placa base Micro-ATX. Este formato solo cabe en cajas ATX o Micro-ATX.",
+    },
+    {
+      anyOf: ["Caja_MiniITX"],
+      noneOf: ["Caja_MicroATX"],
       requiresAnySelected: ["GPU_Gama_Alta"],
       message:
         "Has elegido una GPU de gama alta. Las cajas Mini-ITX no tienen espacio suficiente — elige una caja ATX o Micro-ATX.",
+    },
+    {
+      anyOf: ["Caja_MiniITX"],
+      noneOf: ["Caja_MicroATX"],
+      requiresAnySelected: ["Intel_Gama_Alta", "AMD_Gama_Alta"],
+      message:
+        "Tu procesador de gama alta necesita refrigeración líquida, que no cabe en una caja Mini-ITX. Elige una caja ATX o Micro-ATX.",
     },
   ],
 
@@ -109,13 +130,13 @@ const RULES = {
       anyOf: ["Refrigeracion_Aire"],
       requiresAnySelected: ["Intel_Gama_Alta", "AMD_Gama_Alta"],
       message:
-        "Los procesadores de gama alta generan mucho calor (TDP elevado). La refrigeración líquida es necesaria para mantener temperaturas seguras y estables.",
+        "Los procesadores de gama alta generan mucho calor. La refrigeración líquida es necesaria para mantener temperaturas seguras y estables.",
     },
     {
       anyOf: ["Refrigeracion_Liquida"],
       requiresAnySelected: ["Caja_MiniITX"],
       message:
-        "Tu caja Mini-ITX no tiene espacio para un radiador. La refrigeración líquida solo es compatible con cajas ATX o Micro-ATX.",
+        "Con una caja Mini-ITX, la refrigeración líquida no está disponible. Solo se muestran opciones de refrigeración por aire.",
     },
   ],
 };

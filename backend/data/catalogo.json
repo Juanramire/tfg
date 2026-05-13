@@ -3630,9 +3630,7 @@
     "marca": "Lian Li",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_ATX"
     ],
     "precio": 139.95,
     "specs": {
@@ -3744,9 +3742,7 @@
     "marca": "Lian Li",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_ATX"
     ],
     "precio": 79.95,
     "specs": {
@@ -3779,9 +3775,7 @@
     "marca": "Lian Li",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_ATX"
     ],
     "precio": 124.95,
     "specs": {
@@ -3836,9 +3830,7 @@
     "marca": "NZXT",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_ATX"
     ],
     "precio": 139.95,
     "specs": {
@@ -3884,9 +3876,7 @@
     "marca": "Fractal Design",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_ATX"
     ],
     "precio": 167.95,
     "specs": {
@@ -3913,8 +3903,6 @@
     "marca": "NZXT",
     "categoria": "Chasis",
     "features": [
-      "Caja_MiniITX",
-      "Caja_MicroATX",
       "Caja_ATX"
     ],
     "precio": 99.95,
@@ -3955,8 +3943,7 @@
     "marca": "COOLPC",
     "categoria": "Chasis",
     "features": [
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_MicroATX"
     ],
     "precio": 26.95,
     "specs": {
@@ -3988,9 +3975,7 @@
     "marca": "Lian Li",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_ATX"
     ],
     "precio": 99.95,
     "specs": {
@@ -4020,9 +4005,7 @@
     "marca": "Lian Li",
     "categoria": "Chasis",
     "features": [
-      "Caja_ATX",
-      "Caja_MicroATX",
-      "Caja_MiniITX"
+      "Caja_ATX"
     ],
     "precio": 89.95,
     "specs": {
@@ -4793,5 +4776,148 @@
     "specs": {
       "tipo_radiador": "360mm"
     }
+  },
+  {
+    "nombre": "NZXT H2 Flow Mini-ITX Negro",
+    "marca": "NZXT",
+    "categoria": "Chasis",
+    "features": [
+      "Caja_MiniITX"
+    ],
+    "precio": 143.91,
+    "imagen": "",
+    "specs": {
+      "ventiladores_incluidos": 2
+    }
+  },
+  {
+    "nombre": "Gigabyte B760M DS3H DDR4 Socket 1700",
+    "marca": "Gigabyte",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1700",
+      "DDR4",
+      "Placa_MicroATX"
+    ],
+    "precio": 92.5,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "ASUS Prime B760M-A WIFI D4 Socket 1700",
+    "marca": "ASUS",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1700",
+      "DDR4",
+      "Placa_MicroATX"
+    ],
+    "precio": 99.9,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "MSI B760 Gaming Plus WIFI DDR4 Socket 1700",
+    "marca": "MSI",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1700",
+      "DDR4",
+      "Placa_ATX"
+    ],
+    "precio": 142.99,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "ASUS Prime B760M-F DDR5 Socket 1700",
+    "marca": "ASUS",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1700",
+      "DDR5",
+      "Placa_MicroATX"
+    ],
+    "precio": 98.48,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "ASUS Prime Z790-P WIFI DDR5 Socket 1700",
+    "marca": "ASUS",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1700",
+      "DDR5",
+      "Placa_ATX"
+    ],
+    "precio": 189.9,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "ASRock H810M-X DDR5 Socket 1851",
+    "marca": "ASRock",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1851",
+      "DDR5",
+      "Placa_MicroATX"
+    ],
+    "precio": 82.99,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "ASUS Prime B860M-K DDR5 Socket 1851",
+    "marca": "ASUS",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1851",
+      "DDR5",
+      "Placa_MicroATX"
+    ],
+    "precio": 119.9,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "ASUS TUF Gaming B860M-Plus DDR5 Socket 1851",
+    "marca": "ASUS",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1851",
+      "DDR5",
+      "Placa_MicroATX"
+    ],
+    "precio": 144.9,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "Gigabyte B860 Eagle WIFI6E DDR5 Socket 1851",
+    "marca": "Gigabyte",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1851",
+      "DDR5",
+      "Placa_ATX"
+    ],
+    "precio": 170.99,
+    "imagen": "",
+    "specs": {}
+  },
+  {
+    "nombre": "MSI MAG Z890 Tomahawk WIFI DDR5 Socket 1851",
+    "marca": "MSI",
+    "categoria": "PlacaBase",
+    "features": [
+      "LGA1851",
+      "DDR5",
+      "Placa_ATX"
+    ],
+    "precio": 319.98,
+    "imagen": "",
+    "specs": {}
   }
 ]
