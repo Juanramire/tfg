@@ -162,6 +162,16 @@ def generar_por_presupuesto(
     )
     reparto = REPARTO_CON_GPU if incluye_gpu else REPARTO_SIN_GPU
 
+    # Si se piden SSD NVMe + HDD simultáneamente, ampliar presupuesto de almacenamiento
+    if "SSD_NVMe" in features_validas and "Disco_HDD" in features_validas:
+        reparto = dict(reparto)
+        if incluye_gpu:
+            reparto["Almacenamiento"] = 0.14
+            reparto["TarjetaGrafica"] -= 0.07
+        else:
+            reparto["Almacenamiento"] = 0.20
+            reparto["Procesador"] -= 0.08
+
     # Seleccionar productos por categoría
     componentes = []
     precio_total = 0.0

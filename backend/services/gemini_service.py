@@ -81,6 +81,11 @@ Rangos de presupuesto orientativos según contexto:
 - Si menciona un juego concreto de altos requisitos (Cyberpunk, Elden Ring, Alan Wake 2 en 4K) → Gaming + GPU_Gama_Alta + presupuesto mínimo 1500€
 - Si menciona juego en 1080p o "gama media" → Gaming + GPU_Gama_Media + presupuesto 900-1100€
 - Si menciona edición en 4K → Edicion + RAM_32GB + presupuesto mínimo 1400€
+Almacenamiento:
+- "mucho almacenamiento", "bastante espacio", "disco grande", "mucho espacio", "varias unidades" → selected debe incluir ["SSD_NVMe", "Disco_HDD"] y presupuesto mínimo 900€
+- "almacenamiento rápido", "SSD rápido", "NVMe" → selected debe incluir "SSD_NVMe"
+- "almacenamiento económico", "disco barato" → selected debe incluir "SSD_SATA"
+- "disco duro", "HDD", "mucho espacio barato" → selected debe incluir "Disco_HDD"
 
 RESTRICCIONES CRÍTICAS (nunca violarlas):
 - Si el usuario menciona "gaming", "jugar", o cualquier videojuego, el perfil SIEMPRE debe ser "Gaming" aunque pida algo aparentemente contradictorio (como "sin GPU" o "sin tarjeta gráfica"). El backend resuelve las inconsistencias; tú solo asegura que el perfil sea correcto.
