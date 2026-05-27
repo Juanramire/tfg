@@ -1,4 +1,5 @@
 import logging
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,9 +15,14 @@ logging.basicConfig(
 
 app = FastAPI(title="PC Configurador API", version="0.1.0")
 
+_origins = ["http://localhost:5173", "http://localhost", "http://localhost:80"]
+_frontend_url = os.getenv("FRONTEND_URL", "")
+if _frontend_url:
+    _origins.append(_frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost", "http://localhost:80"],
+    allow_origins=_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
