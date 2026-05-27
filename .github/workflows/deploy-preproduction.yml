@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy backend
-        run: curl -fsS -X POST "${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}"
+        run: curl -fsS "${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}"
 
       - name: Deploy frontend
-        run: curl -fsS -X POST "${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}"
+        run: curl -fsS "${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}"
