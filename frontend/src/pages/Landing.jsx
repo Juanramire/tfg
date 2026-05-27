@@ -49,7 +49,7 @@ export default function Landing() {
     <Container maxWidth="md" sx={{ py: 8 }}>
       <Box textAlign="center" mb={6}>
         <Typography variant="h3" fontWeight="bold" gutterBottom>
-          PC Configurador
+          Configurador de PC
         </Typography>
         <Typography variant="h6" color="text.secondary" mb={4}>
           Configura tu PC ideal con validación automática de compatibilidad
