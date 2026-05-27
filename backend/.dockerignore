@@ -7,5 +7,5 @@ __pycache__/
 tests/
 scraper_coolmod.py
 import_catalogo.py
-data/
+data/*.json
 requirements-dev.txt
