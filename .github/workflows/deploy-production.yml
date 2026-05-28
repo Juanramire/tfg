@@ -1,0 +1,16 @@
+name: Deploy production (Render)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy backend
+        run: curl -fsS "${{ secrets.RENDER_BACKEND_PROD_DEPLOY_HOOK }}"
+
+      - name: Deploy frontend
+        run: curl -fsS "${{ secrets.RENDER_FRONTEND_PROD_DEPLOY_HOOK }}"
