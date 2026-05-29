@@ -1,0 +1,153 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Consulta IA - Diagrama de Secuencia" id="gemini-seq-ia">
+    <mxGraphModel dx="2566" dy="501" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=11;fontStyle=1;" value="Usuario" vertex="1">
+          <mxGeometry height="50" width="140" x="10" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="Frontend&#xa;(React + Zustand)" vertex="1">
+          <mxGeometry height="50" width="140" x="210" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Backend&#xa;(FastAPI)" vertex="1">
+          <mxGeometry height="50" width="140" x="420" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" value="Google Gemini API&#xa;(gemini-2.5-flash)" vertex="1">
+          <mxGeometry height="50" width="140" x="630" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="p5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" value="FlamaPy&#xa;(SAT Solver)" vertex="1">
+          <mxGeometry height="50" width="140" x="840" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="p6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="MongoDB Atlas&#xa;/ Fallback JSON" vertex="1">
+          <mxGeometry height="50" width="140" x="1050" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#666666;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="60" as="sourcePoint" />
+            <mxPoint x="80" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#6c8ebf;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="60" as="sourcePoint" />
+            <mxPoint x="280" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#82b366;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="60" as="sourcePoint" />
+            <mxPoint x="490" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l4" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#d6b656;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="60" as="sourcePoint" />
+            <mxPoint x="700" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l5" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#9673a6;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="60" as="sourcePoint" />
+            <mxPoint x="910" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l6" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#b85450;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1120" y="60" as="sourcePoint" />
+            <mxPoint x="1120" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;fontSize=10;align=center;" value="1: &quot;quiero jugar en 4K sin arruinarme&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="105" as="sourcePoint" />
+            <mxPoint x="280" y="105" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;fontSize=10;align=center;" value="2: POST /api/configuracion/consulta  { consulta }">
+          <mxGeometry relative="1" x="-0.2381" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="280" y="150" as="sourcePoint" />
+            <mxPoint x="490" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;fontSize=10;align=center;" value="3: interpretar_consulta(consulta)&amp;nbsp;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="195" as="sourcePoint" />
+            <mxPoint x="700" y="195" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=10;align=center;" value="{ perfil: &quot;Gaming&quot;, presupuesto: 1200, selected: [...], deselected: [...], explicacion }">
+          <mxGeometry relative="1" x="-0.2381" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="700" y="240" as="sourcePoint" />
+            <mxPoint x="490" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=9;fillColor=#fff2cc;strokeColor=#d6b656;size=12;align=left;" value="Sintetiza features desconocidas&lt;br&gt;Fusiona features del perfil detectado&lt;br&gt;Aplica presupuesto por defecto si falta" vertex="1">
+          <mxGeometry height="56" width="235" x="510" y="262" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;fontSize=10;align=center;" value="4: propagate(selected=[Gaming, GPU_Gama_Alta,...], deselected=[])">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="340" as="sourcePoint" />
+            <mxPoint x="910" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=10;align=center;" value="{ forced: [...], excluded: [...], selectable: [...] }">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="383" as="sourcePoint" />
+            <mxPoint x="490" y="383" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="loop_frame" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=none;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="200" width="960" x="210" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="loop_tag" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#000000;strokeWidth=2;fontSize=10;fontStyle=1;align=center;" value="loop" vertex="1">
+          <mxGeometry height="20" width="46" x="210" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="loop_desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontStyle=2;" value="[por cada categoría: Procesador, GPU, Placa Base, RAM, Almacenamiento, PSU, Chasis, Refrigeración]" vertex="1">
+          <mxGeometry height="20" width="680" x="261" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="m5" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;fontSize=10;align=center;" value="5: getProductos(categoria, features_validas)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="450" as="sourcePoint" />
+            <mxPoint x="1120" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=10;align=center;" value="productos compatibles  (elige el de mayor precio ≤ presupuesto_categoria)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1120" y="492" as="sourcePoint" />
+            <mxPoint x="490" y="492" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m6" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;fontSize=10;align=center;" value="6: propagate(selected += features_producto_elegido)">
+          <mxGeometry relative="1" x="0.0015" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="490" y="538" as="sourcePoint" />
+            <mxPoint x="910" y="538" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r6" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=10;align=center;" value="restricciones actualizadas para siguiente categoría">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="580" as="sourcePoint" />
+            <mxPoint x="490" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r_config" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=10;align=center;" value="{ componentes, precio_total, perfil, explicacion, interpretacion }">
+          <mxGeometry relative="1" x="-0.2381" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="490" y="640" as="sourcePoint" />
+            <mxPoint x="280" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r_user" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=10;align=center;" value="Alert con explicación de Gemini → redirige a Resumen  (exportación PDF / JSON disponible)">
+          <mxGeometry relative="1" x="-0.1" y="-15" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="280" y="685" as="sourcePoint" />
+            <mxPoint x="80" y="685" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

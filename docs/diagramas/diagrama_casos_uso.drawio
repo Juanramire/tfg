@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Diagrama de Casos de Uso" id="usecase-cfg">
+    <mxGraphModel dx="1030" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="860" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sys" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;fillColor=none;strokeColor=#000000;strokeWidth=2;fontSize=13;fontStyle=1;spacingTop=4;" value="Configurador de PC" vertex="1">
+          <mxGeometry height="600" width="770" x="50" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="usr" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;" value="Usuario" vertex="1">
+          <mxGeometry height="60" width="30" x="430" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="uc01" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Seleccionar perfil de uso" vertex="1">
+          <mxGeometry height="55" width="190" x="350" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="uc02" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Establecer presupuesto máximo" vertex="1">
+          <mxGeometry height="55" width="190" x="120" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="uc03" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Propagar restricciones&lt;br&gt;automáticamente" vertex="1">
+          <mxGeometry height="55" width="190" x="80" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="uc04" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Filtrar componentes&lt;br&gt;compatibles" vertex="1">
+          <mxGeometry height="55" width="190" x="60" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="uc05" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Generar configuración&lt;br&gt;automática" vertex="1">
+          <mxGeometry height="55" width="190" x="90" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="uc06" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Ver resumen con precio&lt;br&gt;total y ahorro" vertex="1">
+          <mxGeometry height="55" width="190" x="70" y="403" as="geometry" />
+        </mxCell>
+        <mxCell id="uc07" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Consultar en lenguaje&lt;br&gt;natural (IA)" vertex="1">
+          <mxGeometry height="55" width="190" x="160" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="uc08" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Comparar precios&lt;br&gt;en tiendas externas" vertex="1">
+          <mxGeometry height="55" width="190" x="570" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="uc09" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Exportar configuración&lt;br&gt;(PDF / JSON)" vertex="1">
+          <mxGeometry height="55" width="190" x="610" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="uc10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Ver mensajes&lt;br&gt;educativos" vertex="1">
+          <mxGeometry height="55" width="190" x="610" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="uc11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Deseleccionar&lt;br&gt;componente" vertex="1">
+          <mxGeometry height="55" width="190" x="610" y="403" as="geometry" />
+        </mxCell>
+        <mxCell id="uc12" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Seleccionar múltiples&lt;br&gt;discos de almacenamiento" vertex="1">
+          <mxGeometry height="55" width="190" x="580" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="uc13" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=10;" value="Modificar configuración&lt;br&gt;generada automáticamente" vertex="1">
+          <mxGeometry height="55" width="190" x="530" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="e01" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e02" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc02">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e03" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e04" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e05" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc05">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e06" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc06">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e07" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc07">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e08" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc08">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e09" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="usr" style="endArrow=none;html=1;" target="uc13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc01" edge="1" parent="1" source="uc07" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=10;" target="uc05" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
