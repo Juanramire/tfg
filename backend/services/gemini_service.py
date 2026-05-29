@@ -116,7 +116,7 @@ def interpretar_consulta(consulta: str) -> dict:
         )
         raw = response.text.strip()
 
-        # Strip markdown code blocks if present
+        # Eliminar bloques de código markdown si están presentes
         if raw.startswith("```"):
             raw = raw.split("```")[1]
             if raw.startswith("json"):
@@ -125,7 +125,7 @@ def interpretar_consulta(consulta: str) -> dict:
 
         result = json.loads(raw)
 
-        # Sanitize: remove unknown features
+        # Sanear: eliminar features desconocidas
         valid_set = set(VALID_FEATURES)
         result["selected"] = [f for f in result.get("selected", []) if f in valid_set]
         result["deselected"] = [

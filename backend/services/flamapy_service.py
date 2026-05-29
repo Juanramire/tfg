@@ -39,7 +39,7 @@ class FlamapyService:
         return self._feature_names
 
     def get_feature_tree(self) -> dict:
-        """Return the feature model as a nested dict for the frontend."""
+        """Devuelve el modelo de características como un dict anidado para el frontend."""
         return self._feature_to_dict(self._fm.root)
 
     def is_satisfiable(self) -> bool:
@@ -65,7 +65,7 @@ class FlamapyService:
         return self._cached_num_configs
 
     def validate_configuration(self, selected: list[str]) -> bool:
-        """Check if a partial configuration (selected features) can lead to a valid full config."""
+        """Comprueba si una configuración parcial (features seleccionadas) puede derivar en una configuración válida completa."""
         elements = {name: True for name in selected}
         config = Configuration(elements)
         op = PySATSatisfiableConfiguration()
@@ -74,10 +74,10 @@ class FlamapyService:
         return op.get_result()
 
     def propagate(self, selected: list[str], deselected: list[str]) -> dict:
-        """Given selected/deselected features, determine which features are
-        forced true, forced false, or still selectable.
+        """Dado un conjunto de features seleccionadas/deseleccionadas, determina qué features
+        están forzadas a verdadero, forzadas a falso o aún son seleccionables.
 
-        Returns dict with keys: forced, excluded, selectable.
+        Devuelve un dict con las claves: forced, excluded, selectable.
         """
         forced = set(selected)
         excluded = set(deselected)
@@ -86,9 +86,9 @@ class FlamapyService:
         remaining = self._feature_names - forced - excluded
 
         for fname in remaining:
-            # Can this feature be selected?
+            # ¿Se puede seleccionar esta feature?
             can_select = self.validate_configuration(list(forced | {fname}))
-            # Can this feature be deselected?
+            # ¿Se puede deseleccionar esta feature?
             test_deselected = {name: True for name in forced}
             test_deselected[fname] = False
             config = Configuration(test_deselected)
@@ -113,7 +113,7 @@ class FlamapyService:
         }
 
     def _feature_to_dict(self, feature) -> dict:
-        """Recursively convert a Feature to a dict."""
+        """Convierte recursivamente una Feature en un dict."""
         children = []
         for relation in feature.get_relations():
             group_type = self._relation_type(relation)

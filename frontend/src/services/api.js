@@ -12,7 +12,7 @@ async function fetchAPI(endpoint, options = {}) {
   return res.json();
 }
 
-// Features
+// Features (árbol de características)
 export const getFeatureTree = () => fetchAPI("/features/tree");
 export const getModelInfo = () => fetchAPI("/features/info");
 export const validateConfig = (selected) =>
@@ -26,7 +26,7 @@ export const propagate = (selected, deselected = []) =>
     body: JSON.stringify({ selected, deselected }),
   });
 
-// Productos
+// Productos (catálogo)
 export const getProductos = (categoria, features) => {
   const params = new URLSearchParams();
   if (categoria) params.set("categoria", categoria);

@@ -65,7 +65,7 @@ class TestCategorias:
 
 class TestIntegracionFlamapyProductos:
     def test_flujo_gaming_amd_am5(self):
-        """Gaming+AMD+AM5: propagar constraints -> filtrar productos compatibles."""
+        """Gaming+AMD+AM5: propagar constraints → filtrar productos compatibles."""
         # Propagar
         r = client.post(
             "/api/features/propagate",
@@ -86,7 +86,7 @@ class TestIntegracionFlamapyProductos:
             "/api/productos/?categoria=TarjetaGrafica&features=GPU_Gama_Baja"
         )
         assert r.json()["total"] > 0  # existen en catálogo...
-        # ...pero el modelo las excluye (validación la hace el frontend con prop["excluded"])
+        # ...pero el modelo las excluye (la validación la realiza el frontend usando prop["excluded"])
 
     def test_intel_lga1700_ddr4_filtra_placas(self):
         """Intel LGA1700 con DDR4: solo placas con esas features."""

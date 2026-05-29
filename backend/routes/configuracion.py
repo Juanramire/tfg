@@ -8,10 +8,10 @@ router = APIRouter(prefix="/api/configuracion", tags=["configuracion"])
 
 @router.post("/presupuesto")
 def configurar_por_presupuesto(request: PresupuestoRequest):
-    """Generate a complete PC configuration based on a budget.
+    """Genera una configuración completa de PC basada en un presupuesto.
 
-    Distributes the budget across categories using optimized percentages
-    and selects the best compatible product for each category.
+    Distribuye el presupuesto entre categorías usando porcentajes optimizados
+    y selecciona el mejor producto compatible para cada categoría.
     """
     if request.presupuesto < 300:
         raise HTTPException(
@@ -27,10 +27,10 @@ def configurar_por_presupuesto(request: PresupuestoRequest):
 
 @router.post("/perfil")
 def configurar_por_perfil(request: PerfilRequest):
-    """Generate a complete PC configuration based on a usage profile.
+    """Genera una configuración completa de PC basada en un perfil de uso.
 
-    Supported profiles: Gaming, Edicion, Programacion, Ofimatica.
-    Optionally accepts a budget (uses sensible defaults if not provided).
+    Perfiles disponibles: Gaming, Edicion, Programacion, Ofimatica.
+    Acepta opcionalmente un presupuesto (usa valores por defecto si no se indica).
     """
     resultado = generar_por_perfil(
         perfil=request.perfil,
@@ -43,7 +43,7 @@ def configurar_por_perfil(request: PerfilRequest):
 
 @router.post("/consulta")
 def configurar_por_consulta(request: ConsultaRequest):
-    """Interpret a natural language query and generate a PC configuration."""
+    """Interpreta una consulta en lenguaje natural y genera una configuración de PC."""
     if not request.consulta.strip():
         raise HTTPException(status_code=400, detail="La consulta no puede estar vacía")
 
@@ -69,22 +69,22 @@ def configurar_por_consulta(request: ConsultaRequest):
         perfil, 1000.0
     )
 
-    # If profile detected, merge its features
+    # Si se detecta perfil, combinar sus features
     if perfil and perfil in PERFILES:
         selected = list(set(selected + PERFILES[perfil]["selected"]))
         deselected = list(set(deselected + PERFILES[perfil]["deselected"]))
 
-    # Remove from deselected any feature forced by the UVL model given the selected set.
-    # This prevents Gemini from violating UVL constraints (e.g. Gaming => TarjetaGrafica,
+    # Eliminar de deselected las features forzadas por el modelo UVL dado el conjunto seleccionado.
+    # Evita que Gemini viole constraints UVL (ej. Gaming => TarjetaGrafica,
     # AMD => AM4|AM5, Intel_Gama_Alta => Refrigeracion_Liquida, etc.).
-    # Uses `selected` after the profile merge, so profile-implied features are included.
+    # Usa `selected` tras la combinación con el perfil, para incluir las features implicadas por él.
     if selected and deselected:
         from services.flamapy_service import flamapy_service
 
         forced_by_model = set(flamapy_service.propagate(selected, [])["forced"])
         deselected = [f for f in deselected if f not in forced_by_model]
 
-    # Ensure minimum budget
+    # Garantizar presupuesto mínimo
     presupuesto = max(presupuesto, 300.0)
 
     resultado = generar_por_presupuesto(
@@ -93,8 +93,8 @@ def configurar_por_consulta(request: ConsultaRequest):
         deselected=deselected,
     )
 
-    # If the model was unsatisfiable (contradictory constraints from Gemini),
-    # retry ignoring deselected so the user always gets a usable configuration.
+    # Si el modelo era insatisfacible (constraints contradictorias de Gemini),
+    # reintentar ignorando deselected para que el usuario siempre reciba una configuración válida.
     if not resultado["componentes"] and deselected:
         resultado = generar_por_presupuesto(
             presupuesto=presupuesto,
@@ -115,7 +115,7 @@ def configurar_por_consulta(request: ConsultaRequest):
 
 @router.get("/perfiles")
 def listar_perfiles():
-    """List available usage profiles with their descriptions."""
+    """Lista los perfiles de uso disponibles con sus descripciones."""
     from services.configurador_service import PERFILES
 
     return {nombre: config["descripcion"] for nombre, config in PERFILES.items()}

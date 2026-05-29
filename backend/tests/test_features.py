@@ -44,12 +44,12 @@ class TestValidate:
         assert r.json()["valid"] is False
 
     def test_invalid_config_gaming_without_gpu(self):
-        """Gaming requires TarjetaGrafica, so selecting Gaming + deselecting GPU is invalid."""
+        """Gaming requiere TarjetaGrafica, por lo que seleccionar Gaming y deseleccionar la GPU es inválido."""
         r = client.post(
             "/api/features/validate",
             json={"selected": ["Gaming"]},
         )
-        # Gaming alone IS satisfiable (GPU can be added)
+        # Gaming solo SÍ es satisfacible (se puede añadir GPU)
         assert r.json()["valid"] is True
 
     def test_unknown_feature_returns_400(self):

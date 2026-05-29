@@ -13,7 +13,7 @@ CATALOGO_PATH = Path(__file__).resolve().parent.parent / "data" / "catalogo.json
 
 
 def _get_mongo_collection():
-    """Try to connect to MongoDB. Returns the collection or None."""
+    """Intenta conectar a MongoDB. Devuelve la colección o None."""
     mongo_uri = os.getenv("MONGO_URI", "")
     if not mongo_uri or "xxxxx" in mongo_uri or "TU_CONTRASEÑA" in mongo_uri:
         logger.warning("MONGO_URI no configurado, usando catálogo local JSON")
@@ -49,9 +49,9 @@ def get_productos(
     categoria: str | None = None,
     features: list[str] | None = None,
 ) -> list[dict]:
-    """Get products, optionally filtered by category and/or features.
+    """Obtiene productos, opcionalmente filtrados por categoría y/o features.
 
-    If MongoDB is available, queries it. Otherwise falls back to the JSON file.
+    Si MongoDB está disponible, consulta en él. Si no, usa el fichero JSON como fallback.
     """
     if _collection is not None:
         query = {}
@@ -61,7 +61,7 @@ def get_productos(
             query["features"] = {"$all": features}
         return list(_collection.find(query, {"_id": 0}))
 
-    # Fallback: JSON local
+    # Fallback: catálogo JSON local
     productos = _load_json_catalog()
     if categoria:
         productos = [p for p in productos if p["categoria"] == categoria]
@@ -72,7 +72,7 @@ def get_productos(
 
 
 def seed_database() -> int:
-    """Load the JSON catalog into MongoDB. Returns number of products inserted."""
+    """Carga el catálogo JSON en MongoDB. Devuelve el número de productos insertados."""
     if _collection is None:
         raise RuntimeError("MongoDB no disponible. Configura MONGO_URI en .env")
     productos = _load_json_catalog()

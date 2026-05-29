@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { propagate, getProductos, generarPorPerfil, consultaIA } from "../services/api";
 
 const useConfigStore = create((set, get) => ({
-  // State
+  // Estado
   activeStep: 0,
   perfil: null,
   presupuesto: null,
@@ -17,7 +17,7 @@ const useConfigStore = create((set, get) => ({
   loading: false,
   error: null,
 
-  // Steps
+  // Pasos
   steps: [
     "Perfil",
     "Procesador",
@@ -31,7 +31,7 @@ const useConfigStore = create((set, get) => ({
     "Resumen",
   ],
 
-  // Category mapping for each step
+  // Mapeo de categoría por cada paso
   stepCategoria: {
     1: "Procesador",
     2: "PlacaBase",
@@ -50,7 +50,7 @@ const useConfigStore = create((set, get) => ({
   setPerfil: (perfil) => set({ perfil }),
   setPresupuesto: (presupuesto) => set({ presupuesto }),
 
-  // Select a feature and propagate constraints
+  // Seleccionar una feature y propagar constraints
   selectFeature: async (feature) => {
     const state = get();
     const newSelected = [...new Set([...state.selected, feature])];
@@ -71,7 +71,7 @@ const useConfigStore = create((set, get) => ({
     }
   },
 
-  // Deselect a feature
+  // Deseleccionar una feature
   deselectFeature: async (feature) => {
     const state = get();
     const newSelected = state.selected.filter((f) => f !== feature);
@@ -91,30 +91,30 @@ const useConfigStore = create((set, get) => ({
     }
   },
 
-  // Load products for a category, filtered by valid features
-  // Uses features from OTHER categories only, so the user can freely change their mind
+  // Carga productos de una categoría, filtrados por features válidas
+  // Usa features de OTRAS categorías únicamente, para que el usuario pueda cambiar de opinión libremente
   loadProductos: async (categoria) => {
     const state = get();
     set({ loading: true });
 
     try {
-      // Build selected features from OTHER categories only (not the current one)
+      // Construir features seleccionadas de OTRAS categorías (no la actual)
       const otherFeatures = Object.entries(state.componentesElegidos)
         .filter(([cat]) => cat !== categoria)
         .flatMap(([, p]) => Array.isArray(p) ? p.flatMap((item) => item.features) : p.features);
 
-      // Add profile features if any
+      // Añadir features del perfil si existe
       const profileFeatures = state.perfil ? [state.perfil] : [];
       const selectedForPropagation = [...new Set([...otherFeatures, ...profileFeatures])];
 
-      // Propagate without current category's features
+      // Propagar sin las features de la categoría actual
       const result = await propagate(selectedForPropagation, state.deselected);
       const validFeatures = new Set([...result.forced, ...result.selectable]);
 
-      // Get all products for this category
+      // Obtener todos los productos de esta categoría
       const { productos } = await getProductos(categoria);
 
-      // Filter: product features must be subset of valid features
+      // Filtrar: las features del producto deben ser un subconjunto de las válidas
       const compatibles = productos.filter((p) =>
         p.features.every((f) => validFeatures.has(f))
       );
@@ -128,12 +128,12 @@ const useConfigStore = create((set, get) => ({
     }
   },
 
-  // Choose a specific product for a category (click again to deselect)
-  // Almacenamiento supports multiple products (array); all others support one.
+  // Elegir un producto concreto para una categoría (clic de nuevo para deseleccionar)
+  // Almacenamiento admite varios productos (array); el resto solo admite uno.
   elegirProducto: async (categoria, producto) => {
     const state = get();
 
-    // Build features from all OTHER categories
+    // Construir features de todas las OTRAS categorías
     const otherFeatures = Object.entries(state.componentesElegidos)
       .filter(([cat]) => cat !== categoria)
       .flatMap(([, p]) => Array.isArray(p) ? p.flatMap((item) => item.features) : p.features);
@@ -190,7 +190,7 @@ const useConfigStore = create((set, get) => ({
     }
   },
 
-  // Generate a complete config from profile + budget
+  // Generar una configuración completa a partir de perfil + presupuesto
   generarConfigAuto: async () => {
     const state = get();
     if (!state.perfil) return;
@@ -199,7 +199,7 @@ const useConfigStore = create((set, get) => ({
     try {
       const resultado = await generarPorPerfil(state.perfil, state.presupuesto);
 
-      // Map components to componentesElegidos by category
+      // Mapear componentes a componentesElegidos por categoría
       const elegidos = {};
       const allFeatures = [];
       for (const comp of resultado.componentes) {
@@ -212,7 +212,7 @@ const useConfigStore = create((set, get) => ({
         allFeatures.push(...comp.producto.features);
       }
 
-      // Propagate with all selected features
+      // Propagar con todas las features seleccionadas
       const result = await propagate(allFeatures, state.deselected);
 
       set({
@@ -222,7 +222,7 @@ const useConfigStore = create((set, get) => ({
         excluded: result.excluded,
         selectable: result.selectable,
         avisos: resultado.avisos,
-        activeStep: state.steps.length - 1, // Go to summary
+        activeStep: state.steps.length - 1, // Ir al resumen
         loading: false,
       });
 
@@ -232,7 +232,7 @@ const useConfigStore = create((set, get) => ({
     }
   },
 
-  // Generate config from natural language query via Gemini
+  // Generar configuración a partir de una consulta en lenguaje natural vía Gemini
   consultarIA: async (consulta) => {
     set({ loading: true, error: null });
     try {
@@ -272,7 +272,7 @@ const useConfigStore = create((set, get) => ({
     }
   },
 
-  // Get total price of chosen components
+  // Obtener el precio total de los componentes elegidos
   getPrecioTotal: () => {
     const state = get();
     return Object.values(state.componentesElegidos).reduce(
@@ -282,7 +282,7 @@ const useConfigStore = create((set, get) => ({
     );
   },
 
-  // Reset everything
+  // Resetear todo el estado
   reset: () =>
     set({
       activeStep: 0,

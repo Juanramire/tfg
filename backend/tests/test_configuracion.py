@@ -217,7 +217,7 @@ class TestConsultaIA:
         assert len(data["explicacion"]) > 0
 
     def test_consulta_gaming_siempre_incluye_gpu(self):
-        """Gaming profile must always include GPU even if Gemini deselects TarjetaGrafica."""
+        """El perfil Gaming siempre debe incluir GPU aunque Gemini deselecte TarjetaGrafica."""
         with patch(
             "services.gemini_service.interpretar_consulta",
             return_value=MOCK_GAMING_CONTRADICTORIO,
@@ -247,19 +247,19 @@ class TestConsultaIA:
 
 class TestCoherencia:
     def test_componentes_son_compatibles_entre_si(self):
-        """All selected products should form a valid FlamaPy configuration."""
+        """Todos los productos seleccionados deben formar una configuración FlamaPy válida."""
         r = client.post(
             "/api/configuracion/perfil",
             json={"perfil": "Gaming", "presupuesto": 1500},
         )
         data = r.json()
 
-        # Collect all features from selected products
+        # Recopilar todas las features de los productos seleccionados
         all_features = []
         for c in data["componentes"]:
             all_features.extend(c["producto"]["features"])
 
-        # Validate with FlamaPy
+        # Validar con FlamaPy
         r = client.post(
             "/api/features/validate",
             json={"selected": all_features},
@@ -267,7 +267,7 @@ class TestCoherencia:
         assert r.json()["valid"] is True
 
     def test_ofimatica_coherente(self):
-        """Ofimática config should also be valid in FlamaPy."""
+        """La configuración de Ofimática también debe ser válida en FlamaPy."""
         r = client.post(
             "/api/configuracion/perfil",
             json={"perfil": "Ofimatica"},
