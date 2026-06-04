@@ -1,185 +1,101 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Diagrama de Clases" id="uml-classes">
-    <mxGraphModel dx="1400" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="1768" dy="971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="fs" value="FlamapyService"
-          style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="220" y="20" width="230" height="162" as="geometry" />
+        <mxCell id="fs" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;" value="FlamapyService" vertex="1">
+          <mxGeometry height="170" width="240" x="200" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="fs_a"
-          value="- _modelo: UVLModel&lt;br&gt;- _sat_model: PySATModel"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="fs">
-          <mxGeometry y="26" width="230" height="32" as="geometry" />
+        <mxCell id="fs_a" parent="fs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="- _modelo: UVLModel&lt;br&gt;- _sat_model: PySATModel" vertex="1">
+          <mxGeometry height="32" width="230" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="fs_sep" value=""
-          style="line;strokeColor=#82b366;fillColor=none;"
-          vertex="1" parent="fs">
-          <mxGeometry y="58" width="230" height="8" as="geometry" />
+        <mxCell id="fs_sep" parent="fs" style="line;strokeColor=#82b366;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="fs_m"
-          value="+ is_satisfiable(): bool&lt;br&gt;+ core_features(): list&lt;br&gt;+ dead_features(): list&lt;br&gt;+ configurations_number(): int&lt;br&gt;+ validate_configuration(selected): bool&lt;br&gt;+ propagate(selected, deselected): dict"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="fs">
-          <mxGeometry y="66" width="230" height="96" as="geometry" />
+        <mxCell id="fs_m" parent="fs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="+ is_satisfiable(): bool&lt;br&gt;+ core_features(): list&lt;br&gt;+ dead_features(): list&lt;br&gt;+ configurations_number(): int&lt;br&gt;+ validate_configuration(selected): bool&lt;br&gt;+ propagate(selected, deselected): dict" vertex="1">
+          <mxGeometry height="100" width="240" y="70" as="geometry" />
         </mxCell>
-
-        <mxCell id="gs" value="GeminiService"
-          style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="510" y="20" width="255" height="82" as="geometry" />
+        <mxCell id="gs" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;" value="GeminiService" vertex="1">
+          <mxGeometry height="100" width="255" x="502.5" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="gs_a"
-          value="VALID_FEATURES: list[str]&lt;br&gt;SYSTEM_PROMPT: str"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="gs">
-          <mxGeometry y="26" width="255" height="32" as="geometry" />
+        <mxCell id="gs_a" parent="gs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="VALID_FEATURES: list[str]&lt;br&gt;SYSTEM_PROMPT: str" vertex="1">
+          <mxGeometry height="32" width="255" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="gs_sep" value=""
-          style="line;strokeColor=#82b366;fillColor=none;"
-          vertex="1" parent="gs">
-          <mxGeometry y="58" width="255" height="8" as="geometry" />
+        <mxCell id="gs_sep" parent="gs" style="line;strokeColor=#82b366;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="255" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="gs_m"
-          value="+ interpretar_consulta(consulta: str): dict"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="gs">
-          <mxGeometry y="66" width="255" height="16" as="geometry" />
+        <mxCell id="gs_m" parent="gs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="+ interpretar_consulta(consulta: str): dict" vertex="1">
+          <mxGeometry height="34" width="255" y="66" as="geometry" />
         </mxCell>
-
-        <mxCell id="db" value="DBService"
-          style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="770" y="20" width="280" height="130" as="geometry" />
+        <mxCell id="db" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;" value="DBService" vertex="1">
+          <mxGeometry height="140" width="280" x="830" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="db_a"
-          value="_collection: Collection | None&lt;br&gt;CATALOGO_PATH: Path"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="db">
-          <mxGeometry y="26" width="280" height="32" as="geometry" />
+        <mxCell id="db_a" parent="db" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="_collection: Collection | None&lt;br&gt;CATALOGO_PATH: Path" vertex="1">
+          <mxGeometry height="32" width="280" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="db_sep" value=""
-          style="line;strokeColor=#82b366;fillColor=none;"
-          vertex="1" parent="db">
-          <mxGeometry y="58" width="280" height="8" as="geometry" />
+        <mxCell id="db_sep" parent="db" style="line;strokeColor=#82b366;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="280" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="db_m"
-          value="+ get_productos(categoria, features): list&lt;br&gt;+ seed_database(): int&lt;br&gt;+ _get_mongo_collection(): Collection | None&lt;br&gt;+ _load_json_catalog(): list"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="db">
-          <mxGeometry y="66" width="280" height="64" as="geometry" />
+        <mxCell id="db_m" parent="db" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="+ get_productos(categoria, features): list&lt;br&gt;+ seed_database(): int&lt;br&gt;+ _get_mongo_collection(): Collection | None&lt;br&gt;+ _load_json_catalog(): list" vertex="1">
+          <mxGeometry height="74" width="280" y="66" as="geometry" />
         </mxCell>
-
-        <mxCell id="prod" value="Producto"
-          style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#fff2cc;strokeColor=#d6b656;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="1080" y="50" width="185" height="122" as="geometry" />
+        <mxCell id="prod" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#fff2cc;strokeColor=#d6b656;html=1;" value="Producto" vertex="1">
+          <mxGeometry height="130" width="130" x="1190" y="25" as="geometry" />
         </mxCell>
-        <mxCell id="prod_a"
-          value="+ nombre: str&lt;br&gt;+ categoria: str&lt;br&gt;+ precio: float&lt;br&gt;+ marca: str&lt;br&gt;+ features: list[str]&lt;br&gt;+ specs: dict"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="prod">
-          <mxGeometry y="26" width="185" height="96" as="geometry" />
+        <mxCell id="prod_a" parent="prod" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="+ nombre: str&lt;br&gt;+ categoria: str&lt;br&gt;+ precio: float&lt;br&gt;+ marca: str&lt;br&gt;+ features: list[str]&lt;br&gt;+ specs: dict" vertex="1">
+          <mxGeometry height="104" width="130" y="26" as="geometry" />
         </mxCell>
-
-        <mxCell id="cs" value="useConfigStore"
-          style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="10" y="290" width="240" height="178" as="geometry" />
+        <mxCell id="cs" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;" value="useConfigStore" vertex="1">
+          <mxGeometry height="190" width="250" x="20" y="258" as="geometry" />
         </mxCell>
-        <mxCell id="cs_a"
-          value="- componentesElegidos: dict&lt;br&gt;- perfil: str&lt;br&gt;- presupuesto: float&lt;br&gt;- activeStep: int"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="cs">
-          <mxGeometry y="26" width="240" height="64" as="geometry" />
+        <mxCell id="cs_a" parent="cs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="- componentesElegidos: dict&lt;br&gt;- perfil: str&lt;br&gt;- presupuesto: float&lt;br&gt;- activeStep: int" vertex="1">
+          <mxGeometry height="64" width="240" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="cs_sep" value=""
-          style="line;strokeColor=#6c8ebf;fillColor=none;"
-          vertex="1" parent="cs">
-          <mxGeometry y="90" width="240" height="8" as="geometry" />
+        <mxCell id="cs_sep" parent="cs" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="250" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="cs_m"
-          value="+ loadProductos(categoria: str): void&lt;br&gt;+ elegirProducto(categoria, producto): void&lt;br&gt;+ generarConfigAuto(): void&lt;br&gt;+ consultarIA(consulta: str): void&lt;br&gt;+ goToStep(paso: int): void"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="cs">
-          <mxGeometry y="98" width="240" height="80" as="geometry" />
+        <mxCell id="cs_m" parent="cs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="+ loadProductos(categoria: str): void&lt;br&gt;+ elegirProducto(categoria, producto): void&lt;br&gt;+ generarConfigAuto(): void&lt;br&gt;+ consultarIA(consulta: str): void&lt;br&gt;+ goToStep(paso: int): void" vertex="1">
+          <mxGeometry height="92" width="250" y="98" as="geometry" />
         </mxCell>
-
-        <mxCell id="cfg" value="ConfiguradorService"
-          style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="430" y="280" width="355" height="146" as="geometry" />
+        <mxCell id="cfg" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;html=1;" value="ConfiguradorService" vertex="1">
+          <mxGeometry height="146" width="400" x="430" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="cfg_a"
-          value="REPARTO_CON_GPU: dict&lt;br&gt;REPARTO_SIN_GPU: dict&lt;br&gt;PERFILES: dict"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="cfg">
-          <mxGeometry y="26" width="355" height="48" as="geometry" />
+        <mxCell id="cfg_a" parent="cfg" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="REPARTO_CON_GPU: dict&lt;br&gt;REPARTO_SIN_GPU: dict&lt;br&gt;PERFILES: dict" vertex="1">
+          <mxGeometry height="48" width="355" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="cfg_sep" value=""
-          style="line;strokeColor=#82b366;fillColor=none;"
-          vertex="1" parent="cfg">
-          <mxGeometry y="74" width="355" height="8" as="geometry" />
+        <mxCell id="cfg_sep" parent="cfg" style="line;strokeColor=#82b366;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="355" y="74" as="geometry" />
         </mxCell>
-        <mxCell id="cfg_m"
-          value="+ generar_por_presupuesto(presupuesto, selected, deselected): dict&lt;br&gt;+ generar_por_perfil(perfil, presupuesto): dict&lt;br&gt;+ _elegir_producto(categoria, features_validas, presupuesto_cat): dict&lt;br&gt;+ _seleccionar_almacenamiento(features_validas, presupuesto_cat): list"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="cfg">
-          <mxGeometry y="82" width="355" height="64" as="geometry" />
+        <mxCell id="cfg_m" parent="cfg" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="+ generar_por_presupuesto(presupuesto, selected, deselected): dict&lt;br&gt;+ generar_por_perfil(perfil, presupuesto): dict&lt;br&gt;+ _elegir_producto(categoria, features_validas, presupuesto_cat): dict&lt;br&gt;+ _seleccionar_almacenamiento(features_validas, presupuesto_cat): list" vertex="1">
+          <mxGeometry height="64" width="400" y="82" as="geometry" />
         </mxCell>
-
-        <mxCell id="res" value="&lt;&lt;response&gt;&gt; ConfiguracionResult"
-          style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#fff2cc;strokeColor=#d6b656;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="875" y="275" width="240" height="216" as="geometry" />
+        <mxCell id="res" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#fff2cc;strokeColor=#d6b656;html=1;" value="&amp;lt;&amp;lt;response&amp;gt;&amp;gt; ConfiguracionResult" vertex="1">
+          <mxGeometry height="205" width="240" x="980" y="250.5" as="geometry" />
         </mxCell>
-        <mxCell id="res_a"
-          value="+ presupuesto: float&lt;br&gt;+ precio_total: float&lt;br&gt;+ ahorro: float&lt;br&gt;+ reparto: dict&lt;br&gt;+ componentes: list&lt;br&gt;+ avisos: list[str]&lt;br&gt;+ propagacion: dict&lt;br&gt;+ perfil: str&lt;br&gt;+ descripcion: str&lt;br&gt;+ explicacion: str&lt;br&gt;+ interpretacion: dict"
-          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;"
-          vertex="1" parent="res">
-          <mxGeometry y="26" width="240" height="190" as="geometry" />
+        <mxCell id="res_a" parent="res" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;html=1;overflow=hidden;" value="+ presupuesto: float&lt;br&gt;+ precio_total: float&lt;br&gt;+ ahorro: float&lt;br&gt;+ reparto: dict&lt;br&gt;+ componentes: list&lt;br&gt;+ avisos: list[str]&lt;br&gt;+ propagacion: dict&lt;br&gt;+ perfil: str&lt;br&gt;+ descripcion: str&lt;br&gt;+ explicacion: str&lt;br&gt;+ interpretacion: dict" vertex="1">
+          <mxGeometry height="190" width="240" y="26" as="geometry" />
         </mxCell>
-
-        <mxCell id="e_cs_cfg" value="-HTTP REST-"
-          edge="1" source="cs" target="cfg" parent="1"
-          style="dashed=1;endArrow=block;endFill=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="e_cs_cfg" edge="1" parent="1" source="cs" style="dashed=1;endArrow=block;endFill=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="cfg" value="HTTP REST">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="e_cfg_fs" value="&lt;&lt;uses&gt;&gt;"
-          edge="1" source="cfg" target="fs" parent="1"
-          style="dashed=1;endArrow=open;endFill=0;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+        <mxCell id="e_cfg_fs" edge="1" parent="1" source="cfg" style="dashed=1;endArrow=open;endFill=0;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="fs" value="&amp;lt;&amp;lt;uses&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" x="-0.0036" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cfg_gs" edge="1" parent="1" source="cfg" style="dashed=1;endArrow=open;endFill=0;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="gs" value="&amp;lt;&amp;lt;uses&amp;gt;&amp;gt;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="e_cfg_gs" value="&lt;&lt;uses&gt;&gt;"
-          edge="1" source="cfg" target="gs" parent="1"
-          style="dashed=1;endArrow=open;endFill=0;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+        <mxCell id="e_cfg_db" edge="1" parent="1" source="cfg" style="dashed=1;endArrow=open;endFill=0;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="db" value="&amp;lt;&amp;lt;uses&amp;gt;&amp;gt;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="e_cfg_db" value="&lt;&lt;uses&gt;&gt;"
-          edge="1" source="cfg" target="db" parent="1"
-          style="dashed=1;endArrow=open;endFill=0;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+        <mxCell id="e_cfg_res" edge="1" parent="1" source="cfg" style="endArrow=block;endFill=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="res" value="creates">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="e_cfg_res" value="creates"
-          edge="1" source="cfg" target="res" parent="1"
-          style="endArrow=block;endFill=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+        <mxCell id="e_db_prod" edge="1" parent="1" source="db" style="endArrow=block;endFill=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="prod" value="returns">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="e_db_prod" value="returns"
-          edge="1" source="db" target="prod" parent="1"
-          style="endArrow=block;endFill=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
       </root>
     </mxGraphModel>
   </diagram>

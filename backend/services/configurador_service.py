@@ -8,8 +8,9 @@ from services.flamapy_service import flamapy_service
 from services.db import get_productos
 
 # Porcentajes de reparto de presupuesto por categoría.
-# Basados en distribuciones reales del mercado gaming/workstation.
-# Se ajustan dinámicamente según si hay GPU o no.
+# Heurística de diseño coherente con las guías de montaje de PC (la GPU
+# concentra el mayor peso en equipos gaming). Se ajustan dinámicamente
+# según si hay GPU o no.
 REPARTO_CON_GPU = {
     "Procesador": 0.20,
     "PlacaBase": 0.10,

@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Consulta IA - Diagrama de Secuencia" id="gemini-seq-ia">
-    <mxGraphModel dx="2566" dy="501" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4229" dy="1405" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -25,37 +25,37 @@
         <mxCell id="l1" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#666666;html=1;" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="80" y="60" as="sourcePoint" />
-            <mxPoint x="80" y="840" as="targetPoint" />
+            <mxPoint x="80" y="760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="l2" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#6c8ebf;html=1;" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="280" y="60" as="sourcePoint" />
-            <mxPoint x="280" y="840" as="targetPoint" />
+            <mxPoint x="280" y="760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="l3" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#82b366;html=1;" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="490" y="60" as="sourcePoint" />
-            <mxPoint x="490" y="840" as="targetPoint" />
+            <mxPoint x="490" y="760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="l4" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#d6b656;html=1;" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="700" y="60" as="sourcePoint" />
-            <mxPoint x="700" y="840" as="targetPoint" />
+            <mxPoint x="700" y="760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="l5" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#9673a6;html=1;" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="910" y="60" as="sourcePoint" />
-            <mxPoint x="910" y="840" as="targetPoint" />
+            <mxPoint x="910" y="760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="l6" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#b85450;html=1;" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1120" y="60" as="sourcePoint" />
-            <mxPoint x="1120" y="840" as="targetPoint" />
+            <mxPoint x="1120" y="760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="m1" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;fontSize=10;align=center;" value="1: &quot;quiero jugar en 4K sin arruinarme&quot;">
