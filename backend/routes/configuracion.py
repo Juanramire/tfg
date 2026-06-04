@@ -54,6 +54,16 @@ def configurar_por_consulta(request: ConsultaRequest):
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=str(e))
 
+    if not interpretacion.get("entendida", True):
+        raise HTTPException(
+            status_code=422,
+            detail=interpretacion.get(
+                "explicacion",
+                "No he podido entender tu consulta. Descríbe qué quieres hacer con tu PC "
+                "(por ejemplo: 'PC para jugar a 1080p con 800€' o 'equipo para editar vídeo').",
+            ),
+        )
+
     from services.configurador_service import PERFILES
 
     presupuestos_defecto = {

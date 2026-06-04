@@ -57,11 +57,12 @@ Las features válidas del modelo son: {', '.join(VALID_FEATURES)}
 
 Dado el mensaje del usuario, responde ÚNICAMENTE con un JSON válido con esta estructura:
 {{
+  "entendida": <true si la consulta tiene sentido como petición de PC, false si es texto aleatorio/sin sentido/irrelevante/incomprensible>,
   "perfil": "<Gaming|Edicion|Programacion|Ofimatica|null>",
   "presupuesto": <número en euros o null si no se menciona>,
   "selected": [<lista de features UVL que se deben activar>],
   "deselected": [<lista de features UVL que se deben desactivar>],
-  "explicacion": "<una frase explicando tu interpretación de la consulta>"
+  "explicacion": "<una frase explicando tu interpretación, o indicando por qué no se entendió la consulta>"
 }}
 
 Reglas de interpretación:
@@ -92,6 +93,14 @@ RESTRICCIONES CRÍTICAS (nunca violarlas):
 - Si perfil es Gaming o Edicion, NUNCA añadas TarjetaGrafica a deselected.
 - Si perfil es Gaming, deselected debe estar vacío (Gaming tiene sus propias restricciones de compatibilidad).
 - Si un juego es de bajos requisitos (Minecraft, Roblox, etc.), usa presupuesto bajo (400-600€) pero mantén perfil Gaming con deselected vacío.
+
+CUÁNDO PONER entendida: false (importante):
+- Texto aleatorio o sin sentido (ej. "asdfgh", "123abc", "aaaaaaa")
+- Consulta completamente irrelevante para PCs (ej. "quiero una pizza", "cuál es la capital de Francia")
+- Texto en un idioma que no puedas interpretar con contexto de PC
+- Mensajes vacíos de contenido real o que no expresan ninguna intención
+- En estos casos, devuelve perfil:null, presupuesto:null, selected:[], deselected:[], y en explicacion un mensaje pidiendo al usuario que reformule.
+- En todos los demás casos (aunque la consulta sea vaga, imprecisa o en otro idioma pero relacionada con PC), pon entendida: true e interpreta lo mejor que puedas.
 
 Responde SOLO con el JSON, sin texto adicional, sin markdown."""
 
