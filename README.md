@@ -2,6 +2,10 @@
 
 Aplicación web para configurar PCs de forma inteligente, combinando un **Lineas de Productos SPL** (Software Product Lines) con razonamiento SAT a través de **FlamaPy** y generación de configuraciones asistida por IA (**Gemini**).
 
+## App desplegada
+
+**https://configurador-de-pc.onrender.com**
+
 ## Inicio rápido
 
 ### Con Docker Compose
