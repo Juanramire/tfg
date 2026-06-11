@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Feature Model" id="fm-tree">
-    <mxGraphModel dx="5110" dy="2810" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="6171" pageHeight="1029" math="0" shadow="0">
+    <mxGraphModel dx="4687" dy="2590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="6171" pageHeight="1029" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -79,10 +79,10 @@
         <mxCell id="amd" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=24;" value="AMD" vertex="1">
           <mxGeometry height="48" width="154.3" x="654.9" y="363.9" as="geometry" />
         </mxCell>
-        <mxCell id="e_p_intel" edge="1" parent="1" source="proc" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="intel">
+        <mxCell id="e_p_intel" edge="1" parent="1" source="proc" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;exitX=0.436;exitY=0.999;exitDx=0;exitDy=0;exitPerimeter=0;" target="intel">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_p_amd" edge="1" parent="1" source="proc" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="amd">
+        <mxCell id="e_p_amd" edge="1" parent="1" source="proc" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;exitX=0.58;exitY=0.999;exitDx=0;exitDy=0;exitPerimeter=0;" target="amd">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="i_low" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=24;" value="Gama Baja" vertex="1">
@@ -97,7 +97,7 @@
         <mxCell id="e_i_l" edge="1" parent="1" source="intel" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="i_low">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_i_m" edge="1" parent="1" source="V9edVEXlghJ2Y5-jhlzW-17" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="i_mid">
+        <mxCell id="e_i_m" edge="1" parent="1" source="intel" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="i_mid">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e_i_h" edge="1" parent="1" source="intel" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="i_high">
@@ -115,7 +115,7 @@
         <mxCell id="e_a_l" edge="1" parent="1" source="amd" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="a_low">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_a_m" edge="1" parent="1" source="V9edVEXlghJ2Y5-jhlzW-15" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="a_mid">
+        <mxCell id="e_a_m" edge="1" parent="1" source="amd" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="a_mid">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e_a_h" edge="1" parent="1" source="amd" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="a_high">
@@ -127,11 +127,13 @@
         <mxCell id="formato" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=24;" value="FormatoPlaca" vertex="1">
           <mxGeometry height="48" width="162.9" x="1659.4" y="363.9" as="geometry" />
         </mxCell>
-        <mxCell id="e_pb_s" edge="1" parent="1" source="pb" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="socket">
+        <mxCell id="e_pb_s" edge="1" parent="1" source="pb" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;exitX=0.394;exitY=1.008;exitDx=0;exitDy=0;exitPerimeter=0;" target="socket">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_pb_f" edge="1" parent="1" source="pb" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="formato">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e_pb_f" edge="1" parent="1" source="pb" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;exitX=0.589;exitY=1.004;exitDx=0;exitDy=0;exitPerimeter=0;" target="formato">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1520" y="260" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="lga1700" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=24;" value="LGA1700" vertex="1">
           <mxGeometry height="44.6" width="128.6" x="1011.4" y="518.1" as="geometry" />
@@ -181,11 +183,13 @@
         <mxCell id="capram" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=24;" value="Capacidad" vertex="1">
           <mxGeometry height="48" width="154.3" x="2429.1" y="363.9" as="geometry" />
         </mxCell>
-        <mxCell id="e_ram_g" edge="1" parent="1" source="ram" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="genram">
+        <mxCell id="e_ram_g" edge="1" parent="1" source="ram" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;exitX=0.419;exitY=1.01;exitDx=0;exitDy=0;exitPerimeter=0;" target="genram">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_ram_c" edge="1" parent="1" source="ram" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;" target="capram">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e_ram_c" edge="1" parent="1" source="ram" style="endArrow=none;html=1;strokeColor=#82b366;fontSize=24;exitX=0.598;exitY=1.005;exitDx=0;exitDy=0;exitPerimeter=0;" target="capram">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2327" y="257" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="ddr4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=24;" value="DDR4" vertex="1">
           <mxGeometry height="44.6" width="111.4" x="1988.6" y="518.1" as="geometry" />
