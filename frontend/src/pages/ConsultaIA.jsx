@@ -16,6 +16,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import TuneIcon from "@mui/icons-material/Tune";
 import useConfigStore from "../store/useConfigStore";
+import AvisoArranque from "../components/AvisoArranque";
 
 const EJEMPLOS = [
   "Quiero jugar a Elden Ring en 4K con los gráficos al máximo",
@@ -88,6 +89,8 @@ export default function ConsultaIA() {
           />
         ))}
       </Stack>
+
+      <AvisoArranque />
 
       {(error || localError) && (
         <Alert severity="error" sx={{ mb: 2 }}>

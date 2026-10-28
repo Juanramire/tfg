@@ -11,6 +11,3 @@ jobs:
     steps:
       - name: Deploy backend
         run: curl -fsS "${{ secrets.RENDER_BACKEND_PROD_DEPLOY_HOOK }}"
-
-      - name: Deploy frontend
-        run: curl -fsS "${{ secrets.RENDER_FRONTEND_PROD_DEPLOY_HOOK }}"

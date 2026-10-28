@@ -17,6 +17,7 @@ import useConfigStore from "../store/useConfigStore";
 import StepPerfil from "../components/StepPerfil";
 import StepComponente from "../components/StepComponente";
 import StepResumen from "../components/StepResumen";
+import AvisoArranque from "../components/AvisoArranque";
 
 const CenteredConnector = styled(StepConnector)(({ theme }) => ({
   "&.MuiStepConnector-alternativeLabel": {
@@ -90,6 +91,8 @@ export default function Configurador() {
       </Container>
 
       <Container maxWidth="md" sx={{ pb: 2 }}>
+        <AvisoArranque />
+
         {error && (
           <Alert severity="error" sx={{ mb: 2 }} onClose={() => useConfigStore.setState({ error: null })}>
             {error}

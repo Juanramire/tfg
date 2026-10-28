@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -13,6 +14,7 @@ import SavingsIcon from "@mui/icons-material/Savings";
 import TuneIcon from "@mui/icons-material/Tune";
 import SchoolIcon from "@mui/icons-material/School";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { despertarServidor } from "../services/api";
 
 const features = [
   {
@@ -44,6 +46,11 @@ const features = [
 
 export default function Landing() {
   const navigate = useNavigate();
+
+  // Despierta el backend en segundo plano mientras el usuario lee la portada
+  useEffect(() => {
+    despertarServidor();
+  }, []);
 
   return (
     <Container maxWidth="md" sx={{ py: 8 }}>

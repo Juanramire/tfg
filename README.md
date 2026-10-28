@@ -1,10 +1,12 @@
 # Configurador de PCs con SPL y FlamaPy
 
-Aplicación web para configurar PCs de forma inteligente, combinando un **Lineas de Productos SPL** (Software Product Lines) con razonamiento SAT a través de **FlamaPy** y generación de configuraciones asistida por IA (**Gemini**).
+Aplicación web para configurar PCs de forma inteligente, combinando una **Línea de Productos Software** (SPL, *Software Product Line*) con razonamiento SAT a través de **FlamaPy** y generación de configuraciones asistida por IA (**Gemini**).
 
 ## App desplegada
 
-**https://configurador-de-pc.onrender.com**
+**https://configurador-de-pc-web.onrender.com**
+
+> La primera carga puede tardar ~1 min si el backend está en reposo.
 
 ## Inicio rápido
 
@@ -53,13 +55,13 @@ tfg/
 │   │   ├── modelo.uvl      # Modelo de features (SPL)
 │   │   └── catalogo.json   # Catálogo activo de productos
 │   ├── models/             # Modelos Pydantic
-│   ├── routes/             # Endpoints: /api/features, /api/productos, /api/configuracion
+│   ├── routes/             # Endpoints: /api/features, /api/productos, /api/configuracion, /health
 │   ├── services/           # FlamaPy, MongoDB, motor configurador, Gemini
-│   └── tests/              # 55 tests (98% cobertura)
+│   └── tests/              # 68 tests (97% cobertura)
 ├── frontend/               # SPA (React + Vite)
 │   └── src/
 │       ├── pages/          # Landing, ConsultaIA, Configurador
-│       ├── components/     # StepPerfil, StepComponente, StepResumen
+│       ├── components/     # StepPerfil, StepComponente, StepResumen, AvisoArranque
 │       ├── store/          # Estado global (Zustand)
 │       └── services/       # api.js
 ├── docker-compose.yml
@@ -69,12 +71,12 @@ tfg/
 ## Tests
 
 ```bash
-# Backend — suite completa (55 tests)
+# Backend — suite completa (68 tests)
 cd backend && pytest tests/
 
 # Backend — con informe de cobertura
 cd backend && pytest --cov=. --cov-report=term-missing
 
-# Frontend — tests E2E con Playwright (15 tests)
+# Frontend — tests E2E con Playwright (20 tests)
 cd frontend && npm run test:e2e
 ```

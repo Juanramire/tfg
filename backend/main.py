@@ -43,3 +43,9 @@ app.include_router(configuracion_router)
 @app.get("/")
 def root():
     return {"mensaje": "¡El Backend del TFG está funcionando!"}
+
+
+@app.get("/health")
+def health():
+    """Comprobación ligera de que el servidor responde (no consulta MongoDB ni FlamaPy)."""
+    return {"status": "ok"}

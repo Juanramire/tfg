@@ -68,4 +68,38 @@ test.describe('Consulta por IA', () => {
 
     await expect(page.getByRole('alert')).toBeVisible();
   });
+
+  test('si la primera petición tarda más de 3 s muestra el aviso de arranque', async ({ page }) => {
+    await page.route('**/api/configuracion/consulta', async (route) => {
+      await new Promise((r) => setTimeout(r, 6000));
+      await route.fulfill({ json: MOCK_CONSULTA });
+    });
+    await page.route('**/api/features/propagate', (route) =>
+      route.fulfill({ json: MOCK_PROPAGATE })
+    );
+
+    await page.getByRole('textbox').fill('Quiero jugar a videojuegos');
+    await page.getByRole('button', { name: 'Generar configuración con IA' }).click();
+
+    const aviso = page.getByText('Arrancando el servidor, puede tardar hasta un minuto…');
+    await expect(aviso).toBeVisible({ timeout: 5500 });
+    await expect(page.getByText('PC gaming optimizado para jugar a 1080p')).toBeVisible();
+    await expect(aviso).toBeHidden();
+  });
+
+  test('si la primera petición es rápida no muestra el aviso de arranque', async ({ page }) => {
+    await page.route('**/api/configuracion/consulta', (route) =>
+      route.fulfill({ json: MOCK_CONSULTA })
+    );
+    await page.route('**/api/features/propagate', (route) =>
+      route.fulfill({ json: MOCK_PROPAGATE })
+    );
+
+    await page.getByRole('textbox').fill('Quiero jugar a videojuegos');
+    await page.getByRole('button', { name: 'Generar configuración con IA' }).click();
+    await expect(page.getByText('PC gaming optimizado para jugar a 1080p')).toBeVisible();
+
+    await page.waitForTimeout(3500);
+    await expect(page.getByText('Arrancando el servidor, puede tardar hasta un minuto…')).toHaveCount(0);
+  });
 });

@@ -27,4 +27,18 @@ test.describe('Página de inicio', () => {
     await page.getByRole('button', { name: 'Configurar manualmente' }).click();
     await expect(page).toHaveURL('/configurar');
   });
+
+  test('al cargar lanza en segundo plano un GET a /health', async ({ page }) => {
+    const health = page.waitForRequest((req) => req.url().endsWith('/health') && req.method() === 'GET');
+    await page.goto('/');
+    await health;
+  });
+
+  test('si /health falla no se muestra ningún error', async ({ page }) => {
+    await page.route('**/health', (route) => route.abort());
+    await page.goto('/');
+    await expect(page.getByRole('heading', { name: 'PC Configurador' })).toBeVisible();
+    await expect(page.getByRole('alert')).toHaveCount(0);
+    await expect(page.getByRole('status')).toHaveCount(0);
+  });
 });

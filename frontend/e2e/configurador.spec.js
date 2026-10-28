@@ -106,4 +106,17 @@ test.describe('Configurador manual', () => {
 
     await expect(page.getByText('Elige un procesador')).toBeVisible();
   });
+
+  test('si la primera petición tarda más de 3 s muestra el aviso de arranque', async ({ page }) => {
+    await page.route('**/api/configuracion/perfiles', async (route) => {
+      await new Promise((r) => setTimeout(r, 6000));
+      await route.fulfill({ json: PERFILES });
+    });
+    await page.goto('/configurar');
+
+    const aviso = page.getByText('Arrancando el servidor, puede tardar hasta un minuto…');
+    await expect(aviso).toBeVisible({ timeout: 5500 });
+    await expect(page.getByText(PERFILES.Gaming)).toBeVisible();
+    await expect(aviso).toBeHidden();
+  });
 });
