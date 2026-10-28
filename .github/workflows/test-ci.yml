@@ -33,7 +33,8 @@ jobs:
         pytest --cov=. --cov-report=term-missing
 
   e2e:
-    runs-on: ubuntu-latest
+    # Fijado: Playwright 1.59 no soporta Chromium en ubuntu-latest (26.04)
+    runs-on: ubuntu-24.04
 
     defaults:
       run:
