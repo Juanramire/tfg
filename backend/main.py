@@ -1,12 +1,14 @@
 import logging
 import os
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from routes.configuracion import router as configuracion_router
 from routes.features import router as features_router
 from routes.productos import router as productos_router
+from services.db import CatalogoNoDisponibleError
 
 logging.basicConfig(
     level=logging.INFO,
@@ -26,6 +28,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.exception_handler(CatalogoNoDisponibleError)
+def catalogo_no_disponible_handler(request: Request, exc: CatalogoNoDisponibleError):
+    return JSONResponse(status_code=503, content={"detail": str(exc)})
+
 
 app.include_router(features_router)
 app.include_router(productos_router)

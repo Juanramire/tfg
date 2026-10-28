@@ -3,4 +3,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
+# Falla el build si el catálogo (fallback sin MongoDB) no se ha copiado
+RUN test -f data/catalogo.json
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

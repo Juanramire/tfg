@@ -8,4 +8,6 @@ tests/
 scraper_coolmod.py
 import_catalogo.py
 data/*.json
+# El catálogo es necesario en runtime (fallback cuando MongoDB no está disponible)
+!data/catalogo.json
 requirements-dev.txt
